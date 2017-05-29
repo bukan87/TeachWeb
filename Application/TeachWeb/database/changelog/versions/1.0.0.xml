@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20170529_01" author="ilin_ai">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="sm_status_type"/>
+            </not>
+        </preConditions>
+        <comment>Создание таблицы типов статусов</comment>
+        <sql>
+            create table sm_status_type
+            (
+            code                 VARCHAR2(30 CHAR)    not null,
+            status_table         VARCHAR2(30 CHAR)    not null,
+            constraint sm_stp_pk primary key (code)
+            );
+
+            comment on table sm_status_type is
+            'STP Тип статуса';
+
+            comment on column sm_status_type.code is
+            'Идентификатор типа статуса';
+
+            comment on column sm_status_type.status_table is
+            'Таблица, в которой хрнаится статус';
+        </sql>
+        <rollback>
+            <dropTable tableName="sm_status_type"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20170529_02" author="ilin_ai">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="sm_status"/>
+            </not>
+        </preConditions>
+        <comment>Создание таблицы типов статусов</comment>
+        <sql>
+            create table sm_status
+            (
+            status_type          VARCHAR2(30 CHAR)    not null,
+            code                 VARCHAR2(30 CHAR)    not null,
+            name                 VARCHAR2(250 CHAR)   not null,
+            constraint sm_sts_pk primary key (status_type, code)
+            );
+
+            comment on table sm_status is
+            'STS Статус';
+
+            comment on column sm_status.status_type is
+            'Идентификатор типа статуса';
+
+            comment on column sm_status.code is
+            'Идентификатор статус';
+
+            comment on column sm_status.name is
+            'Наименование статуса';
+
+            alter table sm_status
+            add constraint sm_sts_stp_fk1 foreign key (status_type)
+            references sm_status_type (code);
+        </sql>
+        <rollback>
+            <dropTable tableName="sm_status"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20170529_03" author="ilin_ai">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="sm_status_transition"/>
+            </not>
+        </preConditions>
+        <comment>Создание таблицы типов статусов</comment>
+        <sql>
+            create table sm_status_transition
+            (
+            status_type          VARCHAR2(30 CHAR)    not null,
+            from_status          VARCHAR2(30 CHAR)    not null,
+            to_status            VARCHAR2(30 CHAR)    not null,
+            constraint sm_stt_pk primary key (status_type, from_status, to_status)
+            );
+
+            comment on table sm_status_transition is
+            'STT Возможные переходы статусов';
+
+            comment on column sm_status_transition.status_type is
+            'Идентификатор типа статуса';
+
+            comment on column sm_status_transition.from_status is
+            'Из какого статуса переход';
+
+            comment on column sm_status_transition.to_status is
+            'В какой статус переход';
+
+            alter table sm_status_transition
+            add constraint sm_stt_sts_fk1 foreign key (status_type, from_status)
+            references sm_status (status_type, code);
+
+            alter table sm_status_transition
+            add constraint sm_stt_sts_fk2 foreign key (status_type, to_status)
+            references sm_status (status_type, code);
+        </sql>
+        <rollback>
+            <dropTable tableName="sm_status_transition"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20170529_04" author="ilin_ai">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="sm_status_history"/>
+            </not>
+        </preConditions>
+        <comment>Создание таблицы типов статусов</comment>
+        <sql>
+            create table sm_status_history
+            (
+            id                   NUMBER               not null,
+            table_id             NUMBER               not null,
+            status_type          VARCHAR2(30 CHAR)    not null,
+            from_status          VARCHAR2(30 CHAR)    not null,
+            to_status            VARCHAR2(30 CHAR)    not null,
+            change_status_date   TIMESTAMP            not null,
+            constraint sm_hst_pk primary key (id)
+            );
+
+            comment on table sm_status_history is
+            'HST История переходов по статусам';
+
+            comment on column sm_status_history.id is
+            'Идентификатор записи в истории';
+
+            comment on column sm_status_history.table_id is
+            'Идентификатор записи в таблице, для которой ведётся статусная модель';
+
+            comment on column sm_status_history.status_type is
+            'Идентификатор типа статуса';
+
+            comment on column sm_status_history.from_status is
+            'Из какого статуса переход';
+
+            comment on column sm_status_history.to_status is
+            'В какой статус переход';
+
+            comment on column sm_status_history.change_status_date is
+            'Дата смены статуса';
+        </sql>
+        <rollback>
+            <dropTable tableName="sm_status_history"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
