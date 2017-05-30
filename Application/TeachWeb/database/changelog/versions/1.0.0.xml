@@ -39,7 +39,7 @@
                 <tableExists tableName="sm_status"/>
             </not>
         </preConditions>
-        <comment>Создание таблицы типов статусов</comment>
+        <comment>Создание таблицы статусов</comment>
         <sql>
             create table sm_status
             (
@@ -76,7 +76,7 @@
                 <tableExists tableName="sm_status_transition"/>
             </not>
         </preConditions>
-        <comment>Создание таблицы типов статусов</comment>
+        <comment>Создание таблицы переходов статусов</comment>
         <sql>
             create table sm_status_transition
             (
@@ -117,7 +117,7 @@
                 <tableExists tableName="sm_status_history"/>
             </not>
         </preConditions>
-        <comment>Создание таблицы типов статусов</comment>
+        <comment>Создание таблицы истории переходов статусов</comment>
         <sql>
             create table sm_status_history
             (
@@ -126,7 +126,7 @@
             status_type          VARCHAR2(30 CHAR)    not null,
             from_status          VARCHAR2(30 CHAR)    not null,
             to_status            VARCHAR2(30 CHAR)    not null,
-            change_status_date   TIMESTAMP            not null,
+            change_status_date   TIMESTAMP   default SYSTIMESTAMP  not null,
             constraint sm_hst_pk primary key (id)
             );
 
@@ -153,6 +153,149 @@
         </sql>
         <rollback>
             <dropTable tableName="sm_status_history"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20170529_05" author="ilin_ai">
+        <comment>Заполнение таблицы типов статусов</comment>
+        <sql>
+            insert into sm_status_type
+            ( code
+            , status_table)
+            select
+              t.code
+            , t.status_table
+            from
+            (
+            select null as code, null as status_table from dual where 1 = 0 union all
+            select    'vacancy', 'vn_vacancy' from dual
+            ) t
+            left join sm_status_type stp on stp.code = t.code
+            where stp.code is null;
+        </sql>
+        <rollback>
+            <delete tableName="sm_status_type"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20170529_06" author="ilin_ai">
+        <comment>Заполнение таблицы статусов</comment>
+        <sql>
+            insert into sm_status
+            ( code
+            , status_type
+            , name)
+            select
+            t.code
+            , t.status_type
+            , t.name
+            from
+            (
+            select null as code, null as status_type, null as name from dual where 1 = 0 union all
+            select      'draft',            'vacancy',   'Черновик' from dual union all
+            select 'inProgress',            'vacancy',   'В работе' from dual union all
+            select     'closed',            'vacancy',    'Закрыта' from dual
+            ) t
+            left join sm_status sts on sts.status_type = t.status_type
+            and sts.code = t.code
+            where sts.code is null;
+        </sql>
+        <rollback>
+            <delete tableName="sm_status"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20170530_01" author="ilin_ai">
+        <comment>Заполнение таблицы переходов статусов</comment>
+        <sql>
+            insert into sm_status_transition
+            ( status_type
+            , from_status
+            , to_status)
+            select
+            t.status_type
+            , t.from_status
+            , t.to_status
+            from
+            (
+            select null as status_type, null as from_status, null to_status from dual where 1 = 0 union all
+            select           'vacancy',             'draft', 'inProgress'   from dual  union all
+            select           'vacancy',        'inProgress', 'closed'       from dual
+            ) t
+            left join sm_status_transition stt on stt.status_type = t.status_type
+            and stt.from_status = t.from_status
+            and stt.to_status = t.to_status
+            where stt.status_type is null;
+        </sql>
+        <rollback>
+            <delete tableName="sm_status_transition"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20170530_02" author="ilin_ai">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="sm_hst_id_seq"/>
+            </not>
+        </preConditions>
+        <comment>Создание сиквенса для истории переходов</comment>
+        <createSequence sequenceName="sm_hst_id_seq"/>
+        <rollback>
+            <dropSequence sequenceName="sm_hst_id_seq"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20170530_03" author="ilin_ai">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="vn_vacancy"/>
+            </not>
+        </preConditions>
+        <comment>Создание таблицы вакансий</comment>
+        <sql>
+            create table vn_vacancy
+            (
+            id                   NUMBER               not null,
+            status_type          VARCHAR2(30 CHAR)    not null,
+            status                 VARCHAR2(30 CHAR)    not null,
+            name                 VARCHAR2(250 CHAR)   not null,
+            constraint vn_vcn_pk primary key (id)
+            );
+
+            comment on table vn_vacancy is
+            'VCN Вакансии';
+
+            comment on column vn_vacancy.id is
+            'Идентификатор вакансии';
+
+            comment on column vn_vacancy.status_type is
+            'Идентификатор типа статуса';
+
+            comment on column vn_vacancy.status is
+            'Идентификатор статуса';
+
+            comment on column vn_vacancy.name is
+            'Наименование вакансии';
+
+            alter table vn_vacancy
+            add constraint vn_vcn_sts_fk1 foreign key (status_type, code)
+            references sm_status (status_type, status);
+        </sql>
+        <rollback>
+            <dropTable tableName="vn_vacancy"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20170530_04" author="ilin_ai">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <sequenceExists sequenceName="vn_vcn_id_seq"/>
+            </not>
+        </preConditions>
+        <comment>Создание сиквенса для вакансий</comment>
+        <createSequence sequenceName="vn_vcn_id_seq"/>
+        <rollback>
+            <dropSequence sequenceName="vn_vcn_id_seq"/>
         </rollback>
     </changeSet>
 

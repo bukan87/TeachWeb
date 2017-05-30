@@ -4,10 +4,10 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Ilin on 29.05.2017.
+ * @author by Ilin on 29.05.2017.
  */
 @Entity
-@Table(name = "SM_STATUS_HISTORY", schema = "REC")
+@Table(name = "SM_STATUS_HISTORY")
 public class StatusHistoryEntity {
     private long id;
     private long tableId;
@@ -18,6 +18,8 @@ public class StatusHistoryEntity {
 
     @Id
     @Column(name = "ID")
+    @SequenceGenerator(name = "sm_hst_id_seq", sequenceName = "sm_hst_id_seq")
+    @GeneratedValue(generator = "sm_hst_id_seq", strategy = GenerationType.SEQUENCE)
     public long getId() {
         return id;
     }
@@ -67,13 +69,23 @@ public class StatusHistoryEntity {
     }
 
     @Basic
-    @Column(name = "CHANGE_STATUS_DATE")
+    @Column(name = "CHANGE_STATUS_DATE", insertable = false)
     public Timestamp getChangeStatusDate() {
         return changeStatusDate;
     }
 
     public void setChangeStatusDate(Timestamp changeStatusDate) {
         this.changeStatusDate = changeStatusDate;
+    }
+
+    public StatusHistoryEntity(long tableId, String statusType, String fromStatus, String toStatus) {
+        this.tableId = tableId;
+        this.statusType = statusType;
+        this.fromStatus = fromStatus;
+        this.toStatus = toStatus;
+    }
+
+    public StatusHistoryEntity() {
     }
 
     @Override

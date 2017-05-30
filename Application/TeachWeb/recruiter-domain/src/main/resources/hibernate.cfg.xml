@@ -7,14 +7,16 @@
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</property>
         <property name="connection.url">jdbc:oracle:thin:@192.168.56.101:1521:erpdev</property>
         <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="connection.username">rec</property>
+        <property name="connection.password">rec</property>
 
-        <!-- NOTE that after automapping with IDEA property username and password will delete -->
-        <!--and will be:  Initial SessionFactory failedorg.hibernate.service.spi.ServiceException: Unable to create requested service-->
-        <!-- NOTE that after automapping with IDEA property username and password will delete -->
         <mapping class="ru.bukan.TeachWeb.domain.model.statusModel.StatusEntity"/>
         <mapping class="ru.bukan.TeachWeb.domain.model.statusModel.StatusHistoryEntity"/>
         <mapping class="ru.bukan.TeachWeb.domain.model.statusModel.StatusTransitionEntity"/>
         <mapping class="ru.bukan.TeachWeb.domain.model.statusModel.StatusTypeEntity"/>
+        <mapping class="ru.bukan.TeachWeb.domain.model.VacancyEntity"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>

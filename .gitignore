@@ -1,3 +1,9 @@
 *.iml
-Application/TeachWeb/.idea/*
+.idea/
 Application/TeachWeb/Stepic/target/*
+Test.java
+Application/TeachWeb/database/liquibase.jar
+Application/TeachWeb/database/liquibase.properties
+Application/TeachWeb/database/ojdbc8.jar
+Application/TeachWeb/database/testBase.pdb
+/Application/TeachWeb/recruiter-domain/target/

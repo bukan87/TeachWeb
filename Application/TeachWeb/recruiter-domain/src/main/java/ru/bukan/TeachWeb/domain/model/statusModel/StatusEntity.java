@@ -3,10 +3,10 @@ package ru.bukan.TeachWeb.domain.model.statusModel;
 import javax.persistence.*;
 
 /**
- * Created by Ilin on 29.05.2017.
+ * @author by Ilin_ai on 29.05.2017.
  */
 @Entity
-@Table(name = "SM_STATUS", schema = "REC")
+@Table(name = "SM_STATUS")
 @IdClass(StatusEntityPK.class)
 public class StatusEntity {
     private String statusType;

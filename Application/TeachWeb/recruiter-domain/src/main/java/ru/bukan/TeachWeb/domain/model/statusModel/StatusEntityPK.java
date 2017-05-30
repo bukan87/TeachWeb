@@ -55,4 +55,7 @@ public class StatusEntityPK implements Serializable {
         this.statusType = statusType;
         this.code = code;
     }
+
+    public StatusEntityPK() {
+    }
 }

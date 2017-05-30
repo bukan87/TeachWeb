@@ -69,4 +69,7 @@ public class StatusTransitionEntityPK implements Serializable {
         this.fromStatus = fromStatus;
         this.toStatus = toStatus;
     }
+
+    public StatusTransitionEntityPK() {
+    }
 }
