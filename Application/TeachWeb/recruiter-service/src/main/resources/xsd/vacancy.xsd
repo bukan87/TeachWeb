@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="Версия 1.0.0"
+           targetNamespace="http://teachWeb.bukan.ru/v1/vacancy"
+           elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ct="http://teachWeb.bukan.ru/v1/common"
+           xmlns:sf="http://teachWeb.bukan.ru/v1/vacancy">
+
+
+    <xs:import namespace="http://teachWeb.bukan.ru/v1/common" schemaLocation="common.xsd"/>
+
+    <xs:complexType name="Vacancy">
+        <xs:annotation>
+            <xs:documentation>Описание сущности вакансия</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ChangeStatus">
+        <xs:annotation>
+            <xs:documentation>Описание запроса на смену статуса</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="toStatus" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="changeStatus" type="sf:ChangeStatus"/>
+
+    <xs:complexType name="ChangeStatusResponse">
+        <xs:annotation>
+            <xs:documentation>Описание ответа на смену статуса</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="error" type="ct:error"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="changeStatusResponse" type="sf:ChangeStatusResponse"/>
+
+
+</xs:schema>

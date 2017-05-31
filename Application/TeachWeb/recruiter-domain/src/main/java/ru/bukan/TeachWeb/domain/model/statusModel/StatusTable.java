@@ -15,17 +15,25 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class StatusTable {
 
-    @Column(name = "status_type", nullable = false)
     private String statusType;
-    @Column(name = "status", nullable = false)
-    private String currentStatus;
 
+    private String currentStatus;
+    @Column(name = "status_type", nullable = false)
     public String getStatusType() {
         return statusType;
     }
 
+    public void setStatusType(String statusType) {
+        this.statusType = statusType;
+    }
+
+    @Column(name = "status", nullable = false)
     public String getCurrentStatus() {
         return currentStatus;
+    }
+
+    public void setCurrentStatus(String currentStatus) {
+        this.currentStatus = currentStatus;
     }
 
     public StatusTable(String statusType, String currentStatus) {
@@ -33,15 +41,7 @@ public abstract class StatusTable {
         this.currentStatus = currentStatus;
     }
 
-    public void setStatusType(String statusType) {
-        this.statusType = statusType;
-    }
-
-    public void setCurrentStatus(String currentStatus) {
-        this.currentStatus = currentStatus;
-    }
-
-    public void changeStatus(Long id, String status){
+    protected void changeStatus(Long id, String status){
         if (new StatusRepository().isExistsTransition(statusType, currentStatus, status)){
             Session session = HibernateSessionFactory.getSessionFactory().openSession();
             session.beginTransaction();
@@ -56,4 +56,9 @@ public abstract class StatusTable {
             session.close();
         }
     }
+
+    /**
+    * Обязательный метод по смене статуса. Должен дёргать метод changeStatus(Long, String)
+    */
+    abstract public void changeStatus(String status);
 }

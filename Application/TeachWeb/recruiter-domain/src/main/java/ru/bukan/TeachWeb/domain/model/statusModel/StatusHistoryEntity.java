@@ -1,20 +1,23 @@
 package ru.bukan.TeachWeb.domain.model.statusModel;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
 
 /**
  * @author by Ilin on 29.05.2017.
  */
 @Entity
 @Table(name = "SM_STATUS_HISTORY")
+@XmlRootElement(name = "statsHistory")
 public class StatusHistoryEntity {
     private long id;
     private long tableId;
     private String statusType;
     private String fromStatus;
     private String toStatus;
-    private Timestamp changeStatusDate;
+    private Date changeStatusDate;
 
     @Id
     @Column(name = "ID")
@@ -30,6 +33,7 @@ public class StatusHistoryEntity {
 
     @Basic
     @Column(name = "TABLE_ID")
+    @XmlElement
     public long getTableId() {
         return tableId;
     }
@@ -40,6 +44,7 @@ public class StatusHistoryEntity {
 
     @Basic
     @Column(name = "STATUS_TYPE")
+    @XmlElement
     public String getStatusType() {
         return statusType;
     }
@@ -50,6 +55,7 @@ public class StatusHistoryEntity {
 
     @Basic
     @Column(name = "FROM_STATUS")
+    @XmlElement
     public String getFromStatus() {
         return fromStatus;
     }
@@ -60,6 +66,7 @@ public class StatusHistoryEntity {
 
     @Basic
     @Column(name = "TO_STATUS")
+    @XmlElement
     public String getToStatus() {
         return toStatus;
     }
@@ -70,11 +77,12 @@ public class StatusHistoryEntity {
 
     @Basic
     @Column(name = "CHANGE_STATUS_DATE", insertable = false)
-    public Timestamp getChangeStatusDate() {
+    @XmlElement
+    public Date getChangeStatusDate() {
         return changeStatusDate;
     }
 
-    public void setChangeStatusDate(Timestamp changeStatusDate) {
+    public void setChangeStatusDate(Date changeStatusDate) {
         this.changeStatusDate = changeStatusDate;
     }
 

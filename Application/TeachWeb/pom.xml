@@ -13,6 +13,7 @@
         <module>Stepic</module>
         <module>database</module>
         <module>recruiter-domain</module>
+        <module>recruiter-service</module>
     </modules>
 
     <build>

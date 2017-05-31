@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="VacancyWebService"
+                  targetNamespace="http://teachWeb.bukan.ru/v1/vacancyService/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:tns="http://teachWeb.bukan.ru/v1/vacancyService/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <wsdl:documentation>Версия 1.0.0</wsdl:documentation>
+
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://teachWeb.bukan.ru/v1/vacancyService/" schemaLocation="../xsd/vacancy.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="changeStatus">
+        <wsdl:part name="changeStatus" element="tns:changeStatus" >
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="changeStatusResponse">
+        <wsdl:part name="changeStatusResponse" element="tns:changeStatusResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <!--*************************************************-->
+    <wsdl:portType name="VacancyWebService">
+        <wsdl:operation name="changeStatus">
+            <wsdl:input message="tns:changeStatus" name="changeStatus"/>
+            <wsdl:output message="tns:changeStatusResponse" name="changeStatusResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!--*************************************************-->
+    <wsdl:binding name="VacancyWebServiceSoapBinding" type="tns:VacancyWebService">
+        <wsdl:operation name="changeStatus">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="changeStatus"/>
+            <wsdl:output name="changeStatusResponse"/>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

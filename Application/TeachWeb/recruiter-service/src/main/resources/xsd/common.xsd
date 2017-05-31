@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="Версия 1.0.0"
+           targetNamespace="http://teachWeb.bukan.ru/v1/common"
+           elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:cm="http://teachWeb.bukan.ru/v1/common">
+
+    <xs:complexType name="error">
+        <xs:annotation>
+            <xs:documentation>
+                Описание ошибки вызова метода сервиса
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="code" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Код ошибки
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="message" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>
+                        Описание ошибки
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
