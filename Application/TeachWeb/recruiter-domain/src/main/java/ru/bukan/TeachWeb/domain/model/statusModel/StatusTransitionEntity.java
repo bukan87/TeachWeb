@@ -3,10 +3,10 @@ package ru.bukan.TeachWeb.domain.model.statusModel;
 import javax.persistence.*;
 
 /**
- * Created by Ilin on 29.05.2017.
+ * @author by Ilin_ai on 29.05.2017.
  */
 @Entity
-@Table(name = "SM_STATUS_TRANSITION", schema = "REC")
+@Table(name = "SM_STATUS_TRANSITION")
 @IdClass(StatusTransitionEntityPK.class)
 public class StatusTransitionEntity {
     private String statusType;
@@ -65,4 +65,17 @@ public class StatusTransitionEntity {
         return result;
     }
 
+    public StatusTransitionEntity() {
+    }
+
+    public StatusTransitionEntity(String statusType, String fromStatus, String toStatus) {
+        this.statusType = statusType;
+        this.fromStatus = fromStatus;
+        this.toStatus = toStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Переход" + statusType + " " + fromStatus + " " + toStatus;
+    }
 }
