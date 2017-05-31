@@ -7,3 +7,8 @@ Application/TeachWeb/database/liquibase.properties
 Application/TeachWeb/database/ojdbc8.jar
 Application/TeachWeb/database/testBase.pdb
 /Application/TeachWeb/recruiter-domain/target/
+Application/TeachWeb/Stepic/target/
+Application/TeachWeb/recruiter-domain/src/test/
+Application/TeachWeb/recruiter-service/src/test/
+Application/TeachWeb/recruiter-service/target/
+out/
