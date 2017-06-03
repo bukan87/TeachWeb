@@ -11,7 +11,7 @@
 
     <xs:complexType name="Vacancy">
         <xs:annotation>
-            <xs:documentation>Описание сущности вакансия</xs:documentation>
+            <xs:documentation>Сущность вакансия</xs:documentation>
         </xs:annotation>
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
@@ -22,7 +22,7 @@
 
     <xs:complexType name="ChangeStatus">
         <xs:annotation>
-            <xs:documentation>Описание запроса на смену статуса</xs:documentation>
+            <xs:documentation>Запрос на смену статуса</xs:documentation>
         </xs:annotation>
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
