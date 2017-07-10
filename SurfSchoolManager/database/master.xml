@@ -1,0 +1,224 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="Ilin (generated)" id="1498978295137-1">
+        <createTable remarks="CST Клиенты" tableName="cs_customer">
+            <column autoIncrement="true" name="id" remarks="Первичный ключ" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="cs_cst_pk"/>
+            </column>
+            <column name="last_name" remarks="Фамилия" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" remarks="Имя" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="middle_name" remarks="Отчество" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-2">
+        <createTable remarks="ALT Доступные виды лекции инструктора" tableName="it_avilable_lesson_type">
+            <column name="instructor_id" remarks="Идентификатор инструктора" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lesson_type" remarks="Идентификатор типа урока" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-3">
+        <createTable remarks="ISR Инструкторы" tableName="it_instructor">
+            <column autoIncrement="true" name="id" remarks="Первичный ключ" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="it_isr_pk"/>
+            </column>
+            <column name="last_name" remarks="Фамилия" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" remarks="Имя" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="middle_name" remarks="Отчество" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-4">
+        <createTable remarks="IVT Инвентарь" tableName="iv_inventory">
+            <column autoIncrement="true" name="id" remarks="Первичный ключ" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="iv_ivt_pk"/>
+            </column>
+            <column name="inventory_type" remarks="Тип инвентаря" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" remarks="Наименование инвентаря" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-5">
+        <createTable remarks="IPS Свойства инвентаря" tableName="iv_inventory_properties">
+            <column name="inventory_id" remarks="Идентификатор инвентаря" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="setting_id" remarks="Идентификатор настройки" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="property_val" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-6">
+        <createTable remarks="ISS Настройка инвентаря" tableName="iv_inventory_settings">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="iv_iss_pk"/>
+            </column>
+            <column name="inventory_type" remarks="Тип инвентаря" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="property_name" remarks="Название свойства" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="0" name="is_required" remarks="Обязательность заполнения свойства" type="VARCHAR(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-7">
+        <createTable remarks="ITT Тип инвентаря" tableName="iv_inventory_type">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="iv_itt_pk"/>
+            </column>
+            <column name="name" remarks="Наименование типа инвентаря" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-8">
+        <createTable remarks="CIT Инвентарь клиента на урок" tableName="ls_customer_inventory">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="les_customer_id" remarks="Идентификатор клиента на лекции" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="inventory_id" remarks="Идентификатор инвентаря" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="inventory_type" remarks="Тип инвентаря" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-9">
+        <createTable remarks="LES Уроки" tableName="ls_lesson">
+            <column autoIncrement="true" name="id" remarks="Первичный ключ" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="ls_les_pk"/>
+            </column>
+            <column name="start_date" remarks="Дата начала урока" type="TIMESTAMP(6) WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" remarks="Дата окончания урока" type="TIMESTAMP(6) WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lesson_type" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-10">
+        <createTable remarks="LCT Клиенты на уроке" tableName="ls_lesson_customer">
+            <column autoIncrement="true" name="id" remarks="Первичный ключ" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="ls_lct_pk"/>
+            </column>
+            <column name="lesson_id" remarks="Идентификатор урока" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_id" remarks="Идентификатор клиента" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-11">
+        <createTable remarks="LIR Инструкторы на уроке" tableName="ls_lesson_instructor">
+            <column autoIncrement="true" name="id" remarks="Первичный ключ" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="ls_lir_pk"/>
+            </column>
+            <column name="lesson_id" remarks="Индетификатор урока" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="instructor_id" remarks="Идентификатор инструктора" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-12">
+        <createTable tableName="ls_lesson_type">
+            <column autoIncrement="true" name="id" remarks="Идентификатор типа урока" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="ls_lesson_type_pk"/>
+            </column>
+            <column name="name" remarks="Наименование типа урока" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-13">
+        <addPrimaryKey columnNames="instructor_id, lesson_type" constraintName="it_alt_pk" tableName="it_avilable_lesson_type"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-14">
+        <addPrimaryKey columnNames="inventory_id, setting_id" constraintName="iv_ips_pk" tableName="iv_inventory_properties"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-15">
+        <addPrimaryKey columnNames="id, inventory_type" constraintName="ls_cit_pk" tableName="ls_customer_inventory"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-16">
+        <addUniqueConstraint columnNames="inventory_type, property_name" constraintName="iv_iss_ui1" tableName="iv_inventory_settings"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-17">
+        <addUniqueConstraint columnNames="id, inventory_type" constraintName="iv_ivt_ui1" tableName="iv_inventory"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-18">
+        <addUniqueConstraint columnNames="lesson_id, customer_id" constraintName="ls_lct_ui1" tableName="ls_lesson_customer"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-19">
+        <createIndex indexName="ls_lir_ui1" tableName="ls_lesson_instructor" unique="true">
+            <column name="instructor_id"/>
+            <column name="lesson_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-20">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="ls_lesson_customer" constraintName="cs_lct_cst_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="cs_customer"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-21">
+        <addForeignKeyConstraint baseColumnNames="instructor_id" baseTableName="it_avilable_lesson_type" constraintName="fk_it_avila_reference_it_instr" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="it_instructor"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-22">
+        <addForeignKeyConstraint baseColumnNames="lesson_type" baseTableName="it_avilable_lesson_type" constraintName="fk_it_avila_reference_ls_lesso" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="ls_lesson_type"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-23">
+        <addForeignKeyConstraint baseColumnNames="setting_id" baseTableName="iv_inventory_properties" constraintName="iv_ips_iss_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="iv_inventory_settings"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-24">
+        <addForeignKeyConstraint baseColumnNames="inventory_id" baseTableName="iv_inventory_properties" constraintName="iv_ips_ivt_fk1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="iv_inventory"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-25">
+        <addForeignKeyConstraint baseColumnNames="inventory_type" baseTableName="iv_inventory_settings" constraintName="iv_iss_itt_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="iv_inventory_type"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-26">
+        <addForeignKeyConstraint baseColumnNames="inventory_type" baseTableName="iv_inventory" constraintName="iv_ivt_itt_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="iv_inventory_type"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-27">
+        <addForeignKeyConstraint baseColumnNames="les_customer_id" baseTableName="ls_customer_inventory" constraintName="ls_cit_clt_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="ls_lesson_customer"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-28">
+        <addForeignKeyConstraint baseColumnNames="inventory_id,inventory_type" baseTableName="ls_customer_inventory" constraintName="ls_cit_ivt_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id,inventory_type" referencedTableName="iv_inventory"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-29">
+        <addForeignKeyConstraint baseColumnNames="lesson_id" baseTableName="ls_lesson_customer" constraintName="ls_lct_les_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="ls_lesson"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-30">
+        <addForeignKeyConstraint baseColumnNames="lesson_type" baseTableName="ls_lesson" constraintName="ls_les_type_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="ls_lesson_type"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-31">
+        <addForeignKeyConstraint baseColumnNames="instructor_id" baseTableName="ls_lesson_instructor" constraintName="ls_lir_isr_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="it_instructor"/>
+    </changeSet>
+    <changeSet author="Ilin (generated)" id="1498978295137-32">
+        <addForeignKeyConstraint baseColumnNames="lesson_id" baseTableName="ls_lesson_instructor" constraintName="ls_lir_les_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="ls_lesson"/>
+    </changeSet>
+</databaseChangeLog>
