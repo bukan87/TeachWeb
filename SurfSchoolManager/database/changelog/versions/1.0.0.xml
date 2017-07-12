@@ -26,10 +26,10 @@
     <changeSet author="Ilin (generated)" id="1498978295137-2">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="it_avilable_lesson_type"/>
+                <tableExists tableName="it_available_lesson_type"/>
             </not>
         </preConditions>
-        <createTable remarks="ALT Доступные виды лекции инструктора" tableName="it_avilable_lesson_type">
+        <createTable remarks="ALT Доступные виды лекции инструктора" tableName="it_available_lesson_type">
             <column name="instructor_id" remarks="Идентификатор инструктора" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
@@ -228,7 +228,7 @@
                 <primaryKeyExists primaryKeyName="it_alt_pk"/>
             </not>
         </preConditions>
-        <addPrimaryKey columnNames="instructor_id, lesson_type" constraintName="it_alt_pk" tableName="it_avilable_lesson_type"/>
+        <addPrimaryKey columnNames="instructor_id, lesson_type" constraintName="it_alt_pk" tableName="it_available_lesson_type"/>
     </changeSet>
     <changeSet author="Ilin (generated)" id="1498978295137-14">
         <preConditions onFail="MARK_RAN">
@@ -289,7 +289,7 @@
                 <foreignKeyConstraintExists foreignKeyName="it_alt_isr_fk1"/>
             </not>
         </preConditions>
-        <addForeignKeyConstraint baseColumnNames="instructor_id" baseTableName="it_avilable_lesson_type" constraintName="it_alt_isr_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="it_instructor"/>
+        <addForeignKeyConstraint baseColumnNames="instructor_id" baseTableName="it_available_lesson_type" constraintName="it_alt_isr_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="it_instructor"/>
     </changeSet>
     <changeSet author="Ilin (generated)" id="1498978295137-22">
         <preConditions onFail="MARK_RAN">
@@ -297,7 +297,7 @@
                 <foreignKeyConstraintExists foreignKeyName="is_alt_lesson_type_fk1"/>
             </not>
         </preConditions>
-        <addForeignKeyConstraint baseColumnNames="lesson_type" baseTableName="it_avilable_lesson_type" constraintName="is_alt_lesson_type_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="ls_lesson_type"/>
+        <addForeignKeyConstraint baseColumnNames="lesson_type" baseTableName="it_available_lesson_type" constraintName="is_alt_lesson_type_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="ls_lesson_type"/>
     </changeSet>
     <changeSet author="Ilin (generated)" id="1498978295137-23">
         <preConditions onFail="MARK_RAN">
@@ -380,4 +380,16 @@
         <addForeignKeyConstraint baseColumnNames="lesson_id" baseTableName="ls_lesson_instructor" constraintName="ls_lir_les_fk1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="ls_lesson"/>
     </changeSet>
 
+    <changeSet id="1498978295137-33" author="Ilin">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists indexName="lesson_type_ui1"/>
+            </not>
+        </preConditions>
+        <sql>
+            create unique index lesson_type_ui1 on ls_lesson_type (
+            lower(trim(name))
+            );
+        </sql>
+    </changeSet>
 </databaseChangeLog>

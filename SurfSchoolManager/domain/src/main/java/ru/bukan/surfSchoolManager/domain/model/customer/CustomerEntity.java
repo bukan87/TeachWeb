@@ -1,4 +1,4 @@
-package ru.bukan.surfSchoolManager.domain.model;
+package ru.bukan.surfSchoolManager.domain.model.customer;
 
 import javax.persistence.*;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "cs_customer", schema = "public", catalog = "sfm_dev")
-public class CsCustomerEntity {
+public class CustomerEntity {
     private Long id;
     private String lastName;
     private String firstName;
@@ -58,7 +58,7 @@ public class CsCustomerEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CsCustomerEntity that = (CsCustomerEntity) o;
+        CustomerEntity that = (CustomerEntity) o;
 
         if (id != that.id) return false;
         if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;

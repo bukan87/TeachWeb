@@ -1,4 +1,4 @@
-package ru.bukan.surfSchoolManager.domain.model;
+package ru.bukan.surfSchoolManager.domain.model.lesson;
 
 import javax.persistence.*;
 
@@ -6,30 +6,21 @@ import javax.persistence.*;
  * @author by Ilin_ai on 03.07.2017.
  */
 @Entity
-@Table(name = "iv_inventory", schema = "public", catalog = "sfm_dev")
-public class IvInventoryEntity {
-    private Long id;
-    private int inventoryType;
+@Table(name = "ls_lesson_type", schema = "public", catalog = "sfm_dev")
+public class LessonTypeEntity {
+    private Integer id;
     private String name;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public Long getId() {
+    @Column(name = "id", nullable = false, insertable = false, unique = true, updatable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lsLessonTypeIdSeq")
+    @SequenceGenerator(name = "lsLessonTypeIdSeq", sequenceName = "ls_lesson_type_id_seq", allocationSize = 1)
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "inventory_type", nullable = false)
-    public int getInventoryType() {
-        return inventoryType;
-    }
-
-    public void setInventoryType(int inventoryType) {
-        this.inventoryType = inventoryType;
     }
 
     @Basic
@@ -47,10 +38,9 @@ public class IvInventoryEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        IvInventoryEntity that = (IvInventoryEntity) o;
+        LessonTypeEntity that = (LessonTypeEntity) o;
 
         if (id != that.id) return false;
-        if (inventoryType != that.inventoryType) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;
@@ -58,8 +48,7 @@ public class IvInventoryEntity {
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + inventoryType;
+        int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

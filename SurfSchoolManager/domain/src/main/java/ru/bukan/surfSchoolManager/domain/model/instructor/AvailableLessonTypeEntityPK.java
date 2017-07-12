@@ -1,4 +1,4 @@
-package ru.bukan.surfSchoolManager.domain.model;
+package ru.bukan.surfSchoolManager.domain.model.instructor;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * @author by Ilin_ai on 03.07.2017.
  */
-public class ItAvilableLessonTypeEntityPK implements Serializable {
+public class AvailableLessonTypeEntityPK implements Serializable {
     private Long instructorId;
     private Integer lessonType;
 
@@ -36,7 +36,7 @@ public class ItAvilableLessonTypeEntityPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ItAvilableLessonTypeEntityPK that = (ItAvilableLessonTypeEntityPK) o;
+        AvailableLessonTypeEntityPK that = (AvailableLessonTypeEntityPK) o;
 
         if (instructorId != that.instructorId) return false;
         if (lessonType != that.lessonType) return false;

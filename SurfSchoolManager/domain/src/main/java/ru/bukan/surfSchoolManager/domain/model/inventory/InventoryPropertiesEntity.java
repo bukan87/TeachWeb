@@ -1,18 +1,20 @@
-package ru.bukan.surfSchoolManager.domain.model;
+package ru.bukan.surfSchoolManager.domain.model.inventory;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import java.io.Serializable;
+import javax.persistence.*;
 
 /**
  * @author by Ilin_ai on 03.07.2017.
  */
-public class IvInventoryPropertiesEntityPK implements Serializable {
+@Entity
+@Table(name = "iv_inventory_properties", schema = "public", catalog = "sfm_dev")
+@IdClass(InventoryPropertiesEntityPK.class)
+public class InventoryPropertiesEntity {
     private Long inventoryId;
     private int settingId;
+    private String propertyVal;
 
-    @Column(name = "inventory_id", nullable = false)
     @Id
+    @Column(name = "inventory_id", nullable = false)
     public Long getInventoryId() {
         return inventoryId;
     }
@@ -21,8 +23,8 @@ public class IvInventoryPropertiesEntityPK implements Serializable {
         this.inventoryId = inventoryId;
     }
 
-    @Column(name = "setting_id", nullable = false)
     @Id
+    @Column(name = "setting_id", nullable = false)
     public int getSettingId() {
         return settingId;
     }
@@ -31,15 +33,26 @@ public class IvInventoryPropertiesEntityPK implements Serializable {
         this.settingId = settingId;
     }
 
+    @Basic
+    @Column(name = "property_val", nullable = false, length = 200)
+    public String getPropertyVal() {
+        return propertyVal;
+    }
+
+    public void setPropertyVal(String propertyVal) {
+        this.propertyVal = propertyVal;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        IvInventoryPropertiesEntityPK that = (IvInventoryPropertiesEntityPK) o;
+        InventoryPropertiesEntity that = (InventoryPropertiesEntity) o;
 
         if (inventoryId != that.inventoryId) return false;
         if (settingId != that.settingId) return false;
+        if (propertyVal != null ? !propertyVal.equals(that.propertyVal) : that.propertyVal != null) return false;
 
         return true;
     }
@@ -48,6 +61,7 @@ public class IvInventoryPropertiesEntityPK implements Serializable {
     public int hashCode() {
         int result = (int) (inventoryId ^ (inventoryId >>> 32));
         result = 31 * result + settingId;
+        result = 31 * result + (propertyVal != null ? propertyVal.hashCode() : 0);
         return result;
     }
 }

@@ -1,4 +1,4 @@
-package ru.bukan.surfSchoolManager.domain.model;
+package ru.bukan.surfSchoolManager.domain.model.lesson;
 
 import javax.persistence.*;
 
@@ -6,11 +6,11 @@ import javax.persistence.*;
  * @author by Ilin_ai on 03.07.2017.
  */
 @Entity
-@Table(name = "ls_lesson_instructor", schema = "public", catalog = "sfm_dev")
-public class LsLessonInstructorEntity {
+@Table(name = "ls_lesson_customer", schema = "public", catalog = "sfm_dev")
+public class LessonCustomerEntity {
     private Long id;
     private Long lessonId;
-    private Long instructorId;
+    private Long customerId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -33,13 +33,13 @@ public class LsLessonInstructorEntity {
     }
 
     @Basic
-    @Column(name = "instructor_id", nullable = false)
-    public Long getInstructorId() {
-        return instructorId;
+    @Column(name = "customer_id", nullable = false)
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setInstructorId(Long instructorId) {
-        this.instructorId = instructorId;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     @Override
@@ -47,11 +47,11 @@ public class LsLessonInstructorEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        LsLessonInstructorEntity that = (LsLessonInstructorEntity) o;
+        LessonCustomerEntity that = (LessonCustomerEntity) o;
 
         if (id != that.id) return false;
         if (lessonId != that.lessonId) return false;
-        if (instructorId != that.instructorId) return false;
+        if (customerId != that.customerId) return false;
 
         return true;
     }
@@ -60,7 +60,7 @@ public class LsLessonInstructorEntity {
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (int) (lessonId ^ (lessonId >>> 32));
-        result = 31 * result + (int) (instructorId ^ (instructorId >>> 32));
+        result = 31 * result + (int) (customerId ^ (customerId >>> 32));
         return result;
     }
 }

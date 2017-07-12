@@ -20,8 +20,8 @@ public class StatusHistoryEntity {
     private Date changeStatusDate;
 
     @Id
-    @Column(name = "ID")
-    @SequenceGenerator(name = "sm_hst_id_seq", sequenceName = "sm_hst_id_seq")
+    @Column(name = "ID", updatable = false)
+    @SequenceGenerator(name = "sm_hst_id_seq", sequenceName = "sm_hst_id_seq", allocationSize = 1)
     @GeneratedValue(generator = "sm_hst_id_seq", strategy = GenerationType.SEQUENCE)
     public long getId() {
         return id;

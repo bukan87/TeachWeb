@@ -1,4 +1,4 @@
-package ru.bukan.surfSchoolManager.domain.model;
+package ru.bukan.surfSchoolManager.domain.model.inventory;
 
 import javax.persistence.*;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "iv_inventory_settings", schema = "public", catalog = "sfm_dev")
-public class IvInventorySettingsEntity {
+public class InventorySettingsEntity {
     private int id;
     private int inventoryType;
     private String propertyName;
@@ -58,7 +58,7 @@ public class IvInventorySettingsEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        IvInventorySettingsEntity that = (IvInventorySettingsEntity) o;
+        InventorySettingsEntity that = (InventorySettingsEntity) o;
 
         if (id != that.id) return false;
         if (inventoryType != that.inventoryType) return false;

@@ -1,4 +1,4 @@
-package ru.bukan.surfSchoolManager.domain.model;
+package ru.bukan.surfSchoolManager.domain.model.instructor;
 
 import javax.persistence.*;
 
@@ -6,9 +6,9 @@ import javax.persistence.*;
  * @author by Ilin_ai on 03.07.2017.
  */
 @Entity
-@Table(name = "it_avilable_lesson_type", schema = "public", catalog = "sfm_dev")
-@IdClass(ItAvilableLessonTypeEntityPK.class)
-public class ItAvilableLessonTypeEntity {
+@Table(name = "it_available_lesson_type", schema = "public", catalog = "sfm_dev")
+@IdClass(AvailableLessonTypeEntityPK.class)
+public class AvailableLessonTypeEntity {
     private Long instructorId;
     private Integer lessonType;
 
@@ -37,7 +37,7 @@ public class ItAvilableLessonTypeEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ItAvilableLessonTypeEntity that = (ItAvilableLessonTypeEntity) o;
+        AvailableLessonTypeEntity that = (AvailableLessonTypeEntity) o;
 
         if (instructorId != that.instructorId) return false;
         if (lessonType != that.lessonType) return false;

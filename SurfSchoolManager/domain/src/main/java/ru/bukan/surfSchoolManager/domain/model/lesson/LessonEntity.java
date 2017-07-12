@@ -1,21 +1,23 @@
-package ru.bukan.surfSchoolManager.domain.model;
+package ru.bukan.surfSchoolManager.domain.model.lesson;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author by Ilin_ai on 03.07.2017.
  */
 @Entity
 @Table(name = "ls_lesson", schema = "public", catalog = "sfm_dev")
-public class LsLessonEntity {
+public class LessonEntity {
     private Long id;
-    private Timestamp startDate;
-    private Timestamp endDate;
-    private int lessonType;
+    private Date startDate;
+    private Date endDate;
+    private Integer lessonType;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, insertable = false, updatable = false, unique = true)
+    @SequenceGenerator(name = "lsLessonDdSeq", sequenceName = "ls_lesson_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lsLessonDdSeq")
     public Long getId() {
         return id;
     }
@@ -24,33 +26,33 @@ public class LsLessonEntity {
         this.id = id;
     }
 
-    @Basic
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "start_date", nullable = false)
-    public Timestamp getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Timestamp startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    @Basic
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "end_date", nullable = false)
-    public Timestamp getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Timestamp endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
     @Basic
     @Column(name = "lesson_type", nullable = false)
-    public int getLessonType() {
+    public Integer getLessonType() {
         return lessonType;
     }
 
-    public void setLessonType(int lessonType) {
+    public void setLessonType(Integer lessonType) {
         this.lessonType = lessonType;
     }
 
@@ -59,7 +61,7 @@ public class LsLessonEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        LsLessonEntity that = (LsLessonEntity) o;
+        LessonEntity that = (LessonEntity) o;
 
         if (id != that.id) return false;
         if (lessonType != that.lessonType) return false;

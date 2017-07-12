@@ -1,4 +1,4 @@
-package ru.bukan.surfSchoolManager.domain.model;
+package ru.bukan.surfSchoolManager.domain.model.lesson;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * @author by Ilin_ai on 03.07.2017.
  */
-public class LsCustomerInventoryEntityPK implements Serializable {
+public class CustomerInventoryEntityPK implements Serializable {
     private Long id;
     private Long inventoryType;
 
@@ -36,7 +36,7 @@ public class LsCustomerInventoryEntityPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        LsCustomerInventoryEntityPK that = (LsCustomerInventoryEntityPK) o;
+        CustomerInventoryEntityPK that = (CustomerInventoryEntityPK) o;
 
         if (id != that.id) return false;
         if (inventoryType != that.inventoryType) return false;

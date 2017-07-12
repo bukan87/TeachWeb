@@ -5,9 +5,6 @@ import ru.bukan.TeachWeb.domain.model.statusModel.StatusTable;
 import ru.bukan.TeachWeb.domain.util.HibernateSessionFactory;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * @author by Ilin_ai on 30.05.2017.
@@ -18,27 +15,24 @@ import javax.xml.bind.annotation.XmlTransient;
         @AttributeOverride(name = "statusType", column = @Column(name = "status_type")),
         @AttributeOverride(name = "currentStatus", column = @Column(name = "status"))
 })
-@XmlRootElement(name = "vacancy")
 public class VacancyEntity extends StatusTable{
-    private long id;
+    @Id
+    @Column(name = "ID", nullable = false, unique = true, updatable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vn_vcn_id_seq")
+    @SequenceGenerator(sequenceName = "vn_vcn_id_seq", allocationSize = 1, name = "vn_vcn_id_seq")
+    private Long id;
     private String name;
 
-    @Id
-    @Column(name = "ID", nullable = false)
-    @SequenceGenerator(name = "vn_vcn_id_seq", sequenceName = "vn_vcn_id_seq")
-    @GeneratedValue(generator = "vn_vcn_id_seq", strategy = GenerationType.SEQUENCE)
-    @XmlTransient
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Basic
     @Column(name = "NAME", nullable = false, length = 250)
-    @XmlElement
     public String getName() {
         return name;
     }
@@ -79,10 +73,5 @@ public class VacancyEntity extends StatusTable{
         this.id = vacancyEntity.getId();
         this.name = vacancyEntity.getName();
         session.close();
-    }
-
-    @Override
-    public void changeStatus(String status){
-        super.changeStatus(id, status);
     }
 }

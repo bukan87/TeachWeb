@@ -1,4 +1,4 @@
-package ru.bukan.surfSchoolManager.domain.model;
+package ru.bukan.surfSchoolManager.domain.model.lesson;
 
 import javax.persistence.*;
 
@@ -7,8 +7,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "ls_customer_inventory", schema = "public", catalog = "sfm_dev")
-@IdClass(LsCustomerInventoryEntityPK.class)
-public class LsCustomerInventoryEntity {
+@IdClass(CustomerInventoryEntityPK.class)
+public class CustomerInventoryEntity {
     private Long id;
     private Long lesCustomerId;
     private Long inventoryId;
@@ -59,7 +59,7 @@ public class LsCustomerInventoryEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        LsCustomerInventoryEntity that = (LsCustomerInventoryEntity) o;
+        CustomerInventoryEntity that = (CustomerInventoryEntity) o;
 
         if (id != that.id) return false;
         if (lesCustomerId != that.lesCustomerId) return false;
