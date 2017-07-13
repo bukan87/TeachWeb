@@ -1,17 +1,22 @@
 package ru.bukan.surfSchoolManager.domain.model.instructor;
 
+import ru.bukan.surfSchoolManager.domain.model.lesson.LessonEntity;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 /**
  * @author by Ilin_ai on 03.07.2017.
  */
 @Entity
 @Table(name = "it_instructor", schema = "public", catalog = "sfm_dev")
-public class InstructorEntity {
+public class InstructorEntity implements Serializable {
     private Long id;
     private String lastName;
     private String firstName;
     private String middleName;
+    private Set<LessonEntity> lessons;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -51,6 +56,15 @@ public class InstructorEntity {
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
+    }
+
+    @ManyToMany(mappedBy = "instructors")
+    public Set<LessonEntity> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(Set<LessonEntity> lessons) {
+        this.lessons = lessons;
     }
 
     @Override

@@ -1,13 +1,14 @@
 package ru.bukan.surfSchoolManager.domain.model.lesson;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author by Ilin_ai on 03.07.2017.
  */
 @Entity
 @Table(name = "ls_lesson_instructor", schema = "public", catalog = "sfm_dev")
-public class LessonInstructorEntity {
+public class LessonInstructorEntity implements Serializable {
     private Long id;
     private Long lessonId;
     private Long instructorId;

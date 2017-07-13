@@ -1,18 +1,25 @@
 package ru.bukan.surfSchoolManager.domain.model.lesson;
 
+import ru.bukan.surfSchoolManager.domain.model.customer.CustomerEntity;
+import ru.bukan.surfSchoolManager.domain.model.instructor.InstructorEntity;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * @author by Ilin_ai on 03.07.2017.
  */
 @Entity
 @Table(name = "ls_lesson", schema = "public", catalog = "sfm_dev")
-public class LessonEntity {
+public class LessonEntity implements Serializable {
     private Long id;
     private Date startDate;
     private Date endDate;
     private Integer lessonType;
+    private Set<CustomerEntity> customers;
+    private Set<InstructorEntity> instructors;
 
     @Id
     @Column(name = "id", nullable = false, insertable = false, updatable = false, unique = true)
@@ -37,7 +44,7 @@ public class LessonEntity {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "end_date", nullable = false)
+    @Column(name = "end_date")
     public Date getEndDate() {
         return endDate;
     }
@@ -50,6 +57,26 @@ public class LessonEntity {
     @Column(name = "lesson_type", nullable = false)
     public Integer getLessonType() {
         return lessonType;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "ls_lesson_customer", joinColumns = {@JoinColumn(name = "lesson_id")}, inverseJoinColumns = {@JoinColumn(name = "customer_id")})
+    public Set<CustomerEntity> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Set<CustomerEntity> customers) {
+        this.customers = customers;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "ls_lesson_instructor", joinColumns = {@JoinColumn(name = "lesson_id")}, inverseJoinColumns = {@JoinColumn(name = "instructor_id")})
+    public Set<InstructorEntity> getInstructors() {
+        return instructors;
+    }
+
+    public void setInstructors(Set<InstructorEntity> instructors) {
+        this.instructors = instructors;
     }
 
     public void setLessonType(Integer lessonType) {

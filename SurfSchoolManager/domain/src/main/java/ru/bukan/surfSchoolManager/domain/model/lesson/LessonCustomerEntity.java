@@ -1,19 +1,22 @@
 package ru.bukan.surfSchoolManager.domain.model.lesson;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author by Ilin_ai on 03.07.2017.
  */
 @Entity
 @Table(name = "ls_lesson_customer", schema = "public", catalog = "sfm_dev")
-public class LessonCustomerEntity {
+public class LessonCustomerEntity implements Serializable {
     private Long id;
     private Long lessonId;
     private Long customerId;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, updatable = false, insertable = false)
+    @SequenceGenerator(name = "lessonCustomerIdSeq", sequenceName = "ls_lesson_customer_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lessonCustomerIdSeq")
     public Long getId() {
         return id;
     }

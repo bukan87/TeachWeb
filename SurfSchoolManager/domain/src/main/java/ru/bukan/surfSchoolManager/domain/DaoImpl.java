@@ -15,15 +15,13 @@ public class DaoImpl implements Dao {
     @PersistenceContext
     private EntityManager em;
 
-    /*public DaoImpl(EntityManager em) {
-        this.em = em;
-    }*/
-
-    /**
-     * Create/update row
-     */
     @Override
     public <ENTITY> void save(ENTITY t) {
         em.persist(t);
+    }
+
+    @Override
+    public <ENTITY> void delete(ENTITY t){
+        em.remove(t);
     }
 }

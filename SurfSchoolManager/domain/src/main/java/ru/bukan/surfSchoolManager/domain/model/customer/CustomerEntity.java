@@ -1,20 +1,27 @@
 package ru.bukan.surfSchoolManager.domain.model.customer;
 
+import ru.bukan.surfSchoolManager.domain.model.lesson.LessonEntity;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 /**
  * @author by Ilin_ai on 03.07.2017.
  */
 @Entity
 @Table(name = "cs_customer", schema = "public", catalog = "sfm_dev")
-public class CustomerEntity {
+public class CustomerEntity implements Serializable {
     private Long id;
     private String lastName;
     private String firstName;
     private String middleName;
+    private Set<LessonEntity> lessons;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, insertable = false, updatable = false)
+    @SequenceGenerator(name = "customerIdSeq", sequenceName = "cs_customer_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customerIdSeq")
     public Long getId() {
         return id;
     }
@@ -51,6 +58,15 @@ public class CustomerEntity {
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
+    }
+
+    @ManyToMany(mappedBy = "customers")
+    public Set<LessonEntity> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(Set<LessonEntity> lessons) {
+        this.lessons = lessons;
     }
 
     @Override
