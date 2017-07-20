@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:tns="http://ssm.bukan.ru/service"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:ls="http://ssm.bukan.ru/service/types/lesson"
+                  xmlns:ct="http://ssm.bukan.ru/service/types/commonTypes"
+                  name="SurfSchoolManagerService"
+                  targetNamespace="http://ssm.bukan.ru/service">
+    <wsdl:documentation>Версия 1.0.0</wsdl:documentation>
+
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://ssm.bukan.ru/service/types/lesson"
+                       schemaLocation="../xsd/lesson.xsd" />
+            <xs:import namespace="http://ssm.bukan.ru/service/types/commonTypes"
+                       schemaLocation="../xsd/commonTypes.xsd"/>
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="getLessonInfo">
+        <wsdl:part name="lessonId" element="ct:Id"/>
+    </wsdl:message>
+
+    <wsdl:message name="getLessonInfoResponse">
+        <wsdl:part name="lessonInfo" element="ls:Lesson"/>
+    </wsdl:message>
+
+    <wsdl:portType name="SurfSchoolManagerService">
+        <wsdl:documentation>WEB сервис по работе с Surf School Manager</wsdl:documentation>
+        <wsdl:operation name="getLessonInfo">
+            <wsdl:documentation>Запрос полной ифнормации об уроке</wsdl:documentation>
+            <wsdl:input message="tns:getLessonInfo" name="getLessonInfo"/>
+            <wsdl:output message="tns:getLessonInfoResponse" name="getLessonInfoResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="SurfSchoolManagerServiceBinding" type="tns:SurfSchoolManagerService">
+        <soap:binding transport="http://www.w3.org/2003/05/soap/bindings/HTTP/" style="document"/>
+        <wsdl:operation name="getLessonInfo">
+            <soap:operation style="document" soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="SurfSchoolManagerService">
+        <wsdl:port name="SurfSchoolManagerServicePort" binding="tns:SurfSchoolManagerServiceBinding">
+            <soap:address location="http://localhost:8080/service/surfSchoolManagerService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

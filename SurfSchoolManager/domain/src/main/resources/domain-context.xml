@@ -31,7 +31,7 @@
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
-        <property name="packagesToScan" value="ru.bukan.surfSchoolManager.domain.model"/>
+        <property name="packagesToScan" value="ru.bukan.ssm.domain.model"/>
 
         <!--<property name="persistenceXmlLocation" value="classpath*:resources/hibernate.cfg.xml"/>-->
         <property name="jpaProperties">
@@ -42,5 +42,5 @@
         </property>
     </bean>
 
-    <bean id="dao" class="ru.bukan.surfSchoolManager.domain.DaoImpl"/>
+    <bean id="dao" class="ru.bukan.ssm.domain.DaoImpl"/>
 </beans>
