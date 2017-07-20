@@ -4,36 +4,56 @@
            xmlns:tns="http://ssm.bukan.ru/service/types/lesson"
            targetNamespace="http://ssm.bukan.ru/service/types/lesson"
 >
-
-  <xs:complexType name="lesson">
+  <xs:complexType name="Lesson">
     <xs:sequence>
-      <xs:element name="customers" type="tns:customer" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
       <xs:element name="id" type="xs:long" minOccurs="0"/>
-      <xs:element name="instructors" type="tns:instructor" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="lessonType" type="xs:int" minOccurs="0"/>
       <xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="customer">
+  <xs:complexType name="Customer">
     <xs:sequence>
-      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
       <xs:element name="id" type="xs:long" minOccurs="0"/>
       <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
       <xs:element name="middleName" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="instructor">
+  <xs:complexType name="Instructor">
     <xs:sequence>
-      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
       <xs:element name="id" type="xs:long" minOccurs="0"/>
       <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
       <xs:element name="middleName" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:element name="Lesson" type="tns:lesson"/>
+  <xs:complexType name="LessonInfo">
+    <xs:complexContent>
+      <xs:extension base="tns:Lesson">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+          <xs:element name="lessonCustomers" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="customer" type="tns:Customer" minOccurs="0" maxOccurs="unbounded"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="lessonInstructors" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="instructor" type="tns:Instructor" minOccurs="0" maxOccurs="unbounded"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="LessonInfo" type="tns:LessonInfo"/>
 </xs:schema>
 

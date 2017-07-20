@@ -23,7 +23,7 @@
     </wsdl:message>
 
     <wsdl:message name="getLessonInfoResponse">
-        <wsdl:part name="lessonInfo" element="ls:Lesson"/>
+        <wsdl:part name="lessonInfo" element="ls:LessonInfo"/>
     </wsdl:message>
 
     <wsdl:portType name="SurfSchoolManagerService">

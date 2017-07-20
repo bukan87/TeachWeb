@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bukan.ssm.domain.Dao;
 import ru.bukan.ssm.domain.model.lesson.LessonEntity;
-import ru.bukan.ssm.service.types.lesson.Lesson;
-import ru.bukan.ssm.transform.LessonTransform;
+import ru.bukan.ssm.service.types.lesson.LessonInfo;
+import ru.bukan.ssm.util.EntityTransform;
 
 import javax.jws.WebService;
 
@@ -22,10 +22,8 @@ public class SurfSchoolManagerServiceImpl implements SurfSchoolManagerService {
 
     @Override
     @Transactional
-    public Lesson getLessonInfo(long lessonId) {
+    public LessonInfo getLessonInfo(long lessonId) {
         LessonEntity lessonEntity = dao.getByKey(LessonEntity.class, lessonId);
-        LessonTransform transform = new LessonTransform();
-
-        return transform.fromEntity(lessonEntity);
+        return EntityTransform.fromEntity(lessonEntity);
     }
 }
