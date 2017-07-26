@@ -25,5 +25,7 @@ public interface Dao {
      */
     <E> E getByKey(Class<E> klazz, Object key);
 
+    <ENTITY> ENTITY merge(ENTITY e) ;
+
     EntityManager getEm();
 }

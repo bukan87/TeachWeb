@@ -20,11 +20,13 @@ public class LessonEntity implements Serializable {
     private Integer lessonType;
     private Set<CustomerEntity> customers;
     private Set<InstructorEntity> instructors;
+    /*private Set<LessonCustomerEntity> lessonCustomers;
+    private Set<LessonInstructorEntity> lessonInstructors;*/
 
     @Id
     @Column(name = "id", nullable = false, insertable = false, updatable = false, unique = true)
-    @SequenceGenerator(name = "lsLessonDdSeq", sequenceName = "ls_lesson_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lsLessonDdSeq")
+    @SequenceGenerator(name = "lsLessonIdSeq", sequenceName = "ls_lesson_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lsLessonIdSeq")
     public Long getId() {
         return id;
     }
@@ -59,6 +61,10 @@ public class LessonEntity implements Serializable {
         return lessonType;
     }
 
+    public void setLessonType(Integer lessonType) {
+        this.lessonType = lessonType;
+    }
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "ls_lesson_customer", joinColumns = {@JoinColumn(name = "lesson_id")}, inverseJoinColumns = {@JoinColumn(name = "customer_id")})
     public Set<CustomerEntity> getCustomers() {
@@ -78,9 +84,34 @@ public class LessonEntity implements Serializable {
     public void setInstructors(Set<InstructorEntity> instructors) {
         this.instructors = instructors;
     }
+    /*
+    @OneToMany(fetch = FetchType.LAZY)
+    public Set<LessonCustomerEntity> getLessonCustomers() {
+        return lessonCustomers;
+    }
 
-    public void setLessonType(Integer lessonType) {
+    public void setLessonCustomers(Set<LessonCustomerEntity> lessonCustomers) {
+        this.lessonCustomers = lessonCustomers;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY)
+    public Set<LessonInstructorEntity> getLessonInstructors() {
+        return lessonInstructors;
+    }
+
+    public void setLessonInstructors(Set<LessonInstructorEntity> lessonInstructors) {
+        this.lessonInstructors = lessonInstructors;
+    }
+    */
+    public LessonEntity(){}
+
+    public LessonEntity(Long id, Date startDate, Date endDate, Integer lessonType, Set<CustomerEntity> customers, Set<InstructorEntity> instructors) {
+        this.id = id;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.lessonType = lessonType;
+        this.customers = customers;
+        this.instructors = instructors;
     }
 
     @Override

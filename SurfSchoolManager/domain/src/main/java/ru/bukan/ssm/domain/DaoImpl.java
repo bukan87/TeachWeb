@@ -31,6 +31,11 @@ public class DaoImpl implements Dao {
     }
 
     @Override
+    public <ENTITY> ENTITY merge(ENTITY e) {
+        return em.merge(e);
+    }
+
+    @Override
     public EntityManager getEm() {
         return em;
     }

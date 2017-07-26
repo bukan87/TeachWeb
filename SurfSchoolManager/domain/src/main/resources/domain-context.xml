@@ -43,4 +43,5 @@
     </bean>
 
     <bean id="dao" class="ru.bukan.ssm.domain.DaoImpl"/>
+    <bean id="lessonDao" class="ru.bukan.ssm.domain.model.lesson.LessonDao"/>
 </beans>

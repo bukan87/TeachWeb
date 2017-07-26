@@ -69,6 +69,17 @@ public class CustomerEntity implements Serializable {
         this.lessons = lessons;
     }
 
+    public CustomerEntity() {
+    }
+
+    public CustomerEntity(Long id, String lastName, String firstName, String middleName, Set<LessonEntity> lessons) {
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lessons = lessons;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

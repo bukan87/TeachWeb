@@ -12,6 +12,7 @@ public class LessonCustomerEntity implements Serializable {
     private Long id;
     private Long lessonId;
     private Long customerId;
+    private LessonEntity lesson;
 
     @Id
     @Column(name = "id", nullable = false, updatable = false, insertable = false)
@@ -26,7 +27,7 @@ public class LessonCustomerEntity implements Serializable {
     }
 
     @Basic
-    @Column(name = "lesson_id", nullable = false)
+    @Column(name = "lesson_id", nullable = false, insertable = false, updatable = false)
     public Long getLessonId() {
         return lessonId;
     }
@@ -36,13 +37,22 @@ public class LessonCustomerEntity implements Serializable {
     }
 
     @Basic
-    @Column(name = "customer_id", nullable = false)
+    @Column(name = "customer_id", nullable = false, insertable = false, updatable = false)
     public Long getCustomerId() {
         return customerId;
     }
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    public LessonEntity getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(LessonEntity lesson) {
+        this.lesson = lesson;
     }
 
     @Override
