@@ -1,5 +1,6 @@
 package ru.bukan.ssm.domain.model.instructor;
 
+import ru.bukan.ssm.domain.model.Person;
 import ru.bukan.ssm.domain.model.lesson.LessonEntity;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "it_instructor", schema = "public", catalog = "sfm_dev")
-public class InstructorEntity implements Serializable {
+public class InstructorEntity implements Serializable, Person {
     private Long id;
     private String lastName;
     private String firstName;
