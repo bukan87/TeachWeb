@@ -1,8 +1,11 @@
 package ru.bukan.ssm.domain.testUtil;
 
+import ru.bukan.ssm.domain.model.Person;
 import ru.bukan.ssm.domain.model.customer.CustomerEntity;
+import ru.bukan.ssm.domain.model.instructor.InstructorEntity;
 import ru.bukan.ssm.domain.model.lesson.LessonEntity;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -13,7 +16,6 @@ import java.util.Random;
  * @author by Ilin_ai on 25.07.2017.
  */
 public class Generate {
-
 
     public static CustomerEntity simpleCustomer(){
         Random rnd = new Random();
@@ -35,10 +37,21 @@ public class Generate {
     }
 
     /**
+     * @return Инструктор без перевязок
+     */
+    public static InstructorEntity simpleInstructor(){
+        Random rnd = new Random();
+        InstructorEntity instructorEntity = new InstructorEntity();
+        instructorEntity.setFirstName("CustomerFamily" + rnd.nextInt());
+        instructorEntity.setLastName("CustomerName");
+        return instructorEntity;
+    }
+
+    /**
      * Генерация случайного времени начала урока в промежутке от 5 до 15 часов
      * с интервалом в 15 минут
      */
-    public static Date lessonStartDate(){
+    private static Date lessonStartDate(){
         Calendar calc = Calendar.getInstance();
         calc.setTime(new Date());
         calc.set(Calendar.HOUR_OF_DAY, 6);

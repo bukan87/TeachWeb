@@ -5,15 +5,17 @@ import org.junit.Before;
 import org.junit.Test;
 import ru.bukan.ssm.domain.BasicTest;
 import ru.bukan.ssm.domain.model.Person;
-import ru.bukan.ssm.domain.model.customer.CustomerEntity;
+import ru.bukan.ssm.domain.model.instructor.InstructorEntity;
 import ru.bukan.ssm.domain.model.lesson.InAnotherLessonException;
 import ru.bukan.ssm.domain.model.lesson.LessonEntity;
 import ru.bukan.ssm.domain.testUtil.Generate;
 import ru.bukan.ssm.domain.util.DateUtil;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -21,34 +23,35 @@ import java.util.Set;
  * |-------| - продолжительность урока
  * верхний урок это первый(уже созданный урок)
  * нижний второй
- * @author by Ilin_ai on 25.07.2017.
+ *
+ * @author by Ilin_ai on 31.08.2017.
  */
-public class LessonWithCustomerInAnotherLesson extends BasicTest{
+public class LessonWithInstructorInAnotherLesson extends BasicTest {
 
     private LessonEntity lesson1;
     private LessonEntity lesson2;
     private Person notIntersectPersons;
 
     @Before
-    public void prepare() throws InAnotherLessonException{
+    public void prepare() throws InAnotherLessonException {
         lesson1 = Generate.simpleLesson();
         {
-            Set<CustomerEntity> customers = new HashSet<>();
-            customers.add(createCustomer());
-            customers.add(createCustomer());
-            customers.add(createCustomer());
-            lesson1.setCustomers(customers);
+            Set<InstructorEntity> instructors = new HashSet<>();
+            instructors.add(createInstructor());
+            instructors.add(createInstructor());
+            instructors.add(createInstructor());
+            lesson1.setInstructors(instructors);
         }
         lesson1 = getLessonDao().saveLesson(lesson1);
 
-        notIntersectPersons = createCustomer();
+        notIntersectPersons = createInstructor();
         lesson2 = Generate.simpleLesson();
-        Set<CustomerEntity> customers = new HashSet<>();
-        customers.add((CustomerEntity) notIntersectPersons);
-        for (CustomerEntity customer : lesson1.getCustomers()){
-            customers.add(customer);
+        Set<InstructorEntity> instructors = new HashSet<>();
+        instructors.add((InstructorEntity) notIntersectPersons);
+        for (InstructorEntity instructor : lesson1.getInstructors()){
+            instructors.add(instructor);
         }
-        lesson2.setCustomers(customers);
+        lesson2.setInstructors(instructors);
     }
 
     /**
@@ -129,7 +132,7 @@ public class LessonWithCustomerInAnotherLesson extends BasicTest{
         try {
             lesson2 = getLessonDao().saveLesson(lesson2);
         }catch (InAnotherLessonException e){
-            Assert.assertEquals(lesson2.getCustomers().size() - 1, e.getPersons().size());
+            Assert.assertEquals(lesson2.getInstructors().size() - 1, e.getPersons().size());
             e.getPersons().forEach(Person -> Assert.assertNotEquals(notIntersectPersons, Person));
         }
     }
