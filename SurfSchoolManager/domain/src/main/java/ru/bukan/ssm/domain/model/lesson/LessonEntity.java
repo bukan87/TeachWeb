@@ -117,26 +117,24 @@ public class LessonEntity implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof LessonEntity)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         LessonEntity that = (LessonEntity) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (id != that.id) return false;
+        if (lessonType != that.lessonType) return false;
         if (startDate != null ? !startDate.equals(that.startDate) : that.startDate != null) return false;
         if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
-        if (lessonType != null ? !lessonType.equals(that.lessonType) : that.lessonType != null) return false;
-        if (customers != null ? !customers.equals(that.customers) : that.customers != null) return false;
-        return instructors != null ? instructors.equals(that.instructors) : that.instructors == null;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
         result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
-        result = 31 * result + (lessonType != null ? lessonType.hashCode() : 0);
-        result = 31 * result + (customers != null ? customers.hashCode() : 0);
-        result = 31 * result + (instructors != null ? instructors.hashCode() : 0);
+        result = 31 * result + lessonType;
         return result;
     }
 }

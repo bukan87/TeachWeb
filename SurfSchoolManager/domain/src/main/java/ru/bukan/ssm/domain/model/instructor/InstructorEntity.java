@@ -21,8 +21,6 @@ public class InstructorEntity implements Serializable, Person {
 
     @Id
     @Column(name = "id", nullable = false)
-    @SequenceGenerator(name = "instructorIdSeq", sequenceName = "it_instructor_id_seq", allocationSize = 1)
-    @GeneratedValue(generator = "instructorIdSeq", strategy = GenerationType.SEQUENCE)
     public Long getId() {
         return id;
     }

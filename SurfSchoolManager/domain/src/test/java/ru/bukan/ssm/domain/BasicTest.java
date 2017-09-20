@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.bukan.ssm.domain.model.customer.CustomerEntity;
-import ru.bukan.ssm.domain.model.instructor.InstructorEntity;
 import ru.bukan.ssm.domain.model.lesson.LessonDao;
 import ru.bukan.ssm.domain.testUtil.Generate;
 
@@ -34,9 +33,5 @@ public abstract class BasicTest {
     public CustomerEntity createCustomer(){
         // TODO Переписать когда будет ДАО для клиента
         return getDao().merge(Generate.simpleCustomer());
-    }
-
-    public InstructorEntity createInstructor(){
-        return getDao().merge(Generate.simpleInstructor());
     }
 }

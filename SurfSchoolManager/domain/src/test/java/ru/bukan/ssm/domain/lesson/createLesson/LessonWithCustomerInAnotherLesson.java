@@ -1,10 +1,8 @@
 package ru.bukan.ssm.domain.lesson.createLesson;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ru.bukan.ssm.domain.BasicTest;
-import ru.bukan.ssm.domain.model.Person;
 import ru.bukan.ssm.domain.model.customer.CustomerEntity;
 import ru.bukan.ssm.domain.model.lesson.InAnotherLessonException;
 import ru.bukan.ssm.domain.model.lesson.LessonEntity;
@@ -27,7 +25,6 @@ public class LessonWithCustomerInAnotherLesson extends BasicTest{
 
     private LessonEntity lesson1;
     private LessonEntity lesson2;
-    private Person notIntersectPersons;
 
     @Before
     public void prepare() throws InAnotherLessonException{
@@ -41,10 +38,10 @@ public class LessonWithCustomerInAnotherLesson extends BasicTest{
         }
         lesson1 = getLessonDao().saveLesson(lesson1);
 
-        notIntersectPersons = createCustomer();
+
         lesson2 = Generate.simpleLesson();
         Set<CustomerEntity> customers = new HashSet<>();
-        customers.add((CustomerEntity) notIntersectPersons);
+        customers.add(createCustomer());
         for (CustomerEntity customer : lesson1.getCustomers()){
             customers.add(customer);
         }
@@ -117,21 +114,6 @@ public class LessonWithCustomerInAnotherLesson extends BasicTest{
         lesson2.setStartDate(addMinutes(lesson1.getStartDate(), 10));
         lesson2.setEndDate(addMinutes(lesson1.getEndDate(), -10));
         lesson2 = getLessonDao().saveLesson(lesson2);
-    }
-
-    /**
-     * Проверка того, что в ошибке хранятся именно те кто пересекаются с другими уроками
-     */
-    @Test
-    public void checkPersonsInException(){
-        lesson2.setStartDate(addMinutes(lesson1.getStartDate(), 10));
-        lesson2.setEndDate(addMinutes(lesson1.getEndDate(), -10));
-        try {
-            lesson2 = getLessonDao().saveLesson(lesson2);
-        }catch (InAnotherLessonException e){
-            Assert.assertEquals(lesson2.getCustomers().size() - 1, e.getPersons().size());
-            e.getPersons().forEach(Person -> Assert.assertNotEquals(notIntersectPersons, Person));
-        }
     }
 
     private static Date addMinutes(Date d, int minutes){
