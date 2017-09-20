@@ -39,11 +39,18 @@ public class LessonDao {
             calc.add(Calendar.HOUR_OF_DAY, 3);
             lesson.setEndDate(calc.getTime());
         }
-        if (getIntersectPersons(lesson).size() > 0){
-            throw new InAnotherLessonException("Один из учеников записан в другом уроке");
+        List<Person> intersectPersons = getIntersectPersons(lesson);
+        if (intersectPersons.size() > 0){
+            throw new InAnotherLessonException(intersectPersons);
         }
         return dao.merge(lesson);
     }
+
+    /*public List<LessonEntity> getTodayLessons(){
+        CriteriaBuilder builder = dao.getEm().getCriteriaBuilder();
+        CriteriaQuery<LessonEntity> criteria = builder.createQuery(LessonEntity.class);
+        //criteria.select(Selection)
+    }*/
 
     /**
      * Определение персон, которые находятся на другом уроке в это же время
