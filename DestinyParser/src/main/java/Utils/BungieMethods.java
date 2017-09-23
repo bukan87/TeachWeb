@@ -2,17 +2,15 @@ package Utils;
 
 import model.Character;
 import model.GameType;
-import model.IndicatorType;
 import model.Player;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @author by Ilin_ai on 21.09.2017.
@@ -61,7 +59,7 @@ public class BungieMethods {
             if (array.length() > 0) {
                 int exit = 0;
                 for (int i = 0; i < array.length(); i++) {
-                    //if (exit++ == 2) break;
+                    if (exit++ == 20) break;
 
                     JSONObject playerObject = (JSONObject)array.get(i);
                     Player player = new Player();
@@ -78,6 +76,25 @@ public class BungieMethods {
             // Проверка наличия страниц далее
             isExistsPage = obj.getBoolean("hasMore");
         }
+
+        // Отсортируем список по имени пользователя
+        players.sort((param1, param2) -> {
+            if (param1 == null) {
+                if (param2 == null) {
+                    return 0; // Both students are null
+                } else {
+                    return -1; // paramT1 is NULL, so put paramT1 in the end of
+                    // the sorted list
+                }
+            } else {
+                if (param2 == null) {
+                    return 1;
+                }
+            }
+            String name1 = param1.getName().toLowerCase();
+            String name2 = param2.getName().toLowerCase();
+            return name1.compareTo(name2);
+        });
         return players;
     }
 
