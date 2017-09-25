@@ -1,0 +1,23 @@
+{
+    "Request": "https://www.bungie.net/Platform/Destiny2/Manifest/DestinyRaceDefinition/898834093/",
+    "Response": {
+        "displayProperties": {
+            "description": "Self-aware machines built for a long-forgotten war.",
+            "name": "Exo",
+            "hasIcon": false
+        },
+        "raceType": 2,
+        "genderedRaceNames": {
+            "Male": "Exo Male",
+            "Female": "Exo Female"
+        },
+        "hash": 898834093,
+        "index": 2,
+        "redacted": false
+    },
+    "ErrorCode": 1,
+    "ThrottleSeconds": 0,
+    "ErrorStatus": "Success",
+    "Message": "Ok",
+    "MessageData": {}
+}

@@ -1,0 +1,59 @@
+{
+    "Response": {
+        "character": {
+            "data": {
+                "membershipId": "4611686018468825852",
+                "membershipType": 2,
+                "characterId": "2305843009261054865",
+                "dateLastPlayed": "2017-09-24T20:40:05Z",
+                "minutesPlayedThisSession": "268",
+                "minutesPlayedTotal": "5779",
+                "light": 291,
+                "stats": {
+                    "3897883278": 0,
+                    "144602215": 0,
+                    "1735777505": 0,
+                    "4244567218": 0,
+                    "1935470627": 291,
+                    "1885944937": 286,
+                    "2996146975": 3,
+                    "392767087": 5,
+                    "1943323491": 6,
+                    "2715839340": 20,
+                    "3555269338": 48
+                },
+                "raceHash": 898834093,
+                "genderHash": 3111576190,
+                "classHash": 2271682572,
+                "raceType": 2,
+                "classType": 2,
+                "genderType": 0,
+                "emblemPath": "/common/destiny2_content/icons/28fad62e9ed456e8ac25cefd0f5e0fc2.jpg",
+                "emblemBackgroundPath": "/common/destiny2_content/icons/dce29b2e09a76727a484b745f4bac3cf.jpg",
+                "emblemHash": 3010885351,
+                "levelProgression": {
+                    "progressionHash": 1716568313,
+                    "dailyProgress": 0,
+                    "dailyLimit": 0,
+                    "weeklyProgress": 0,
+                    "weeklyLimit": 0,
+                    "currentProgress": 146000,
+                    "level": 20,
+                    "levelCap": 20,
+                    "stepIndex": 20,
+                    "progressToNextLevel": 0,
+                    "nextLevelAt": 0
+                },
+                "baseCharacterLevel": 20,
+                "percentToNextLevel": 0.0
+            },
+            "privacy": 1
+        },
+        "itemComponents": {}
+    },
+    "ErrorCode": 1,
+    "ThrottleSeconds": 0,
+    "ErrorStatus": "Success",
+    "Message": "Ok",
+    "MessageData": {}
+}

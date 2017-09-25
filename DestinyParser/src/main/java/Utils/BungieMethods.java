@@ -59,7 +59,7 @@ public class BungieMethods {
             if (array.length() > 0) {
                 int exit = 0;
                 for (int i = 0; i < array.length(); i++) {
-                    if (exit++ == 20) break;
+                    //if (exit++ == 20) break;
 
                     JSONObject playerObject = (JSONObject)array.get(i);
                     Player player = new Player();

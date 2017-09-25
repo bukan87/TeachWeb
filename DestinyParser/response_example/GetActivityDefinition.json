@@ -1,0 +1,126 @@
+{
+    "Request": "https://www.bungie.net/Platform/Destiny2/Manifest/DestinyActivityDefinition/3799743268/",
+    "Response": {
+        "displayProperties": {
+            "description": "Enter the Trials of the Nine to face your fellow Guardians. Prepare to be judged.",
+            "name": "Trials of the Nine",
+            "icon": "/img/misc/missing_icon_d2.png",
+            "hasIcon": false
+        },
+        "releaseIcon": "/img/misc/missing_icon_d2.png",
+        "releaseTime": 0,
+        "activityLevel": 1,
+        "completionUnlockHash": 0,
+        "activityLightLevel": 10,
+        "destinationHash": 2777041980,
+        "placeHash": 4088006058,
+        "activityTypeHash": 2112637710,
+        "tier": -1,
+        "pgcrImage": "/img/destiny_content/pgcr/conceptual_trials_of_the_nine.jpg",
+        "rewards": [{
+            "rewardItems": [{
+                "itemHash": 4039143015,
+                "quantity": 0
+            }]
+        }],
+        "modifiers": [],
+        "isPlaylist": true,
+        "challenges": [{
+            "rewardSiteHash": 0,
+            "inhibitRewardsUnlockHash": 0,
+            "objectiveHash": 1001622645
+        }, {
+            "rewardSiteHash": 0,
+            "inhibitRewardsUnlockHash": 0,
+            "objectiveHash": 1825534073
+        }, {
+            "rewardSiteHash": 0,
+            "inhibitRewardsUnlockHash": 0,
+            "objectiveHash": 1309770155
+        }, {
+            "rewardSiteHash": 0,
+            "inhibitRewardsUnlockHash": 0,
+            "objectiveHash": 1839197916
+        }],
+        "optionalUnlockStrings": [],
+        "inheritFromFreeRoam": false,
+        "suppressOtherRewards": false,
+        "playlistItems": [{
+            "activityHash": 2464834848,
+            "directActivityModeHash": 1505888634,
+            "directActivityModeType": 38,
+            "activityModeHashes": [1505888634, 1164760504, 1370326378],
+            "activityModeTypes": [38, 5, 39],
+            "weight": 0
+        }, {
+            "activityHash": 374818561,
+            "directActivityModeHash": 1505888634,
+            "directActivityModeType": 38,
+            "activityModeHashes": [1505888634, 1164760504, 1370326378],
+            "activityModeTypes": [38, 5, 39],
+            "weight": 0
+        }, {
+            "activityHash": 2667533713,
+            "directActivityModeHash": 2239249083,
+            "directActivityModeType": 37,
+            "activityModeHashes": [2239249083, 1164760504, 1370326378],
+            "activityModeTypes": [37, 5, 39],
+            "weight": 0
+        }, {
+            "activityHash": 3839751954,
+            "directActivityModeHash": 2239249083,
+            "directActivityModeType": 37,
+            "activityModeHashes": [2239249083, 1164760504, 1370326378],
+            "activityModeTypes": [37, 5, 39],
+            "weight": 0
+        }, {
+            "activityHash": 1720510574,
+            "directActivityModeHash": 1505888634,
+            "directActivityModeType": 38,
+            "activityModeHashes": [1505888634, 1164760504, 1370326378],
+            "activityModeTypes": [38, 5, 39],
+            "weight": 0
+        }, {
+            "activityHash": 2033669713,
+            "directActivityModeHash": 2239249083,
+            "directActivityModeType": 37,
+            "activityModeHashes": [2239249083, 1164760504, 1370326378],
+            "activityModeTypes": [37, 5, 39],
+            "weight": 0
+        }, {
+            "activityHash": 760130722,
+            "directActivityModeHash": 2239249083,
+            "directActivityModeType": 37,
+            "activityModeHashes": [2239249083, 1164760504, 1370326378],
+            "activityModeTypes": [37, 5, 39],
+            "weight": 0
+        }, {
+            "activityHash": 2236648719,
+            "directActivityModeHash": 1505888634,
+            "directActivityModeType": 38,
+            "activityModeHashes": [1505888634, 1164760504, 1370326378],
+            "activityModeTypes": [38, 5, 39],
+            "weight": 0
+        }],
+        "matchmaking": {
+            "isMatchmade": true,
+            "minParty": 4,
+            "maxParty": 4,
+            "maxPlayers": 8,
+            "requiresGuardianOath": false
+        },
+        "directActivityModeHash": 1370326378,
+        "directActivityModeType": 39,
+        "activityModeHashes": [1370326378, 1164760504],
+        "activityModeTypes": [39, 5],
+        "isPvP": true,
+        "hash": 3799743268,
+        "index": 126,
+        "redacted": false
+    },
+    "ErrorCode": 1,
+    "ThrottleSeconds": 0,
+    "ErrorStatus": "Success",
+    "Message": "Ok",
+    "MessageData": {}
+}
