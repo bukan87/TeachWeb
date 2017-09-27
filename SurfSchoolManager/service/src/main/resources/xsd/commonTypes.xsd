@@ -6,4 +6,14 @@
 >
     <!-- Идентификатор -->
     <xs:element name="Id" type="xs:long"/>
+
+    <!-- Test graph -->
+    <xs:complexType name="Stats">
+        <xs:sequence>
+            <xs:element name="day" type="xs:date"/>
+            <xs:element name="cnt" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="Stats" type="tns:Stats"/>
 </xs:schema>

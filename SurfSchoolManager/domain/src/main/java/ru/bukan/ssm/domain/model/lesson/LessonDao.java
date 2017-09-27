@@ -5,10 +5,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bukan.ssm.domain.Dao;
 import ru.bukan.ssm.domain.model.Person;
+import ru.bukan.ssm.domain.model.Stats;
 import ru.bukan.ssm.domain.model.customer.CustomerEntity;
 import ru.bukan.ssm.domain.model.instructor.InstructorEntity;
 import ru.bukan.ssm.domain.util.DateUtil;
 
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
@@ -107,5 +111,11 @@ public class LessonDao {
         if (lessonEntity.getInstructors() != null && lessonEntity.getInstructors().size() > 0)
             personList.addAll(getIntersectPersons(InstructorEntity.class, lessonEntity));
         return personList;
+    }
+
+    public List<Stats> getStats(){
+        Query q = dao.getEm().createNativeQuery("SELECT date_trunc('day', start_date) d, count(*) as cnt FROM ls_lesson GROUP BY date_trunc('day', start_date)");
+
+        return q.getResultList();
     }
 }
