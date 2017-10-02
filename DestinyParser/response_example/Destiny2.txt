@@ -1,14 +1,16 @@
+https://bungie-net.github.io/
+chrome-extension://cokgbflfommojglbmbpenpphppikmonn/index.html#response
+
+
 Destiny2.GetActivityHistory
 https://www.bungie.net/Platform/Destiny2/2/Account/4611686018468825852/Character/2305843009261054865/Stats/Activities/
 https://www.bungie.net/Platform/Destiny2/2/Account/4611686018468825852/Character/2305843009261054865/Stats/Activities/?count=100&page=0&mode=TrialsOfTheNine
-
-https://www.bungie.net/Platform/Destiny2/2/Account/4611686018468825852/Character/2305843009261054865/Stats/Activities/?count=100&page=0&mode=Raid
 
 Destiny2.GetDestinyAggregateActivityStats
 https://www.bungie.net/Platform/Destiny2/2/Account/4611686018468825852/Character/2305843009261054865/Stats/AggregateActivityStats/
 
 
-https://www.bungie.net/Platform/Destiny2/2/Account/4611686018468825852/Character/2305843009261054865/Stats/?periodType=Activity
+https://www.bungie.net/Platform/Destiny2/2/Account/4611686018468825852/Character/2305843009261054865/Stats/?periodType=Daily&daystart=2017-09-25&dayend=2017-10-01
 https://www.bungie.net/Platform/Destiny2/2/Account/4611686018468825852/Character/2305843009261054865/Stats/?groups=Internal
 
 
@@ -19,6 +21,17 @@ https://www.bungie.net/Platform/Destiny2/Stats/Definition/
 Destiny2.GetCharacter
 https://www.bungie.net/Platform/Destiny2/2/Profile/4611686018468825852/Character/2305843009261054865/?components=200
 
+Destiny2.GetProfile
+https://www.bungie.net/Platform/Destiny2/2/Profile/4611686018468825852/?components=100
+
 Destiny2.GetDestinyEntityDefinition
 https://www.bungie.net/Platform/Destiny2/Manifest/DestinyRaceDefinition/898834093/
 https://www.bungie.net/Platform/Destiny2/Manifest/DestinyActivityDefinition/3799743268/
+
+
+Destiny2.GetPostGameCarnageReport
+https://www.bungie.net/Platform/Destiny2/Stats/PostGameCarnageReport/502495330/
+
+GroupV2.GetGroupsForMember
+Определение клана по игроку
+https://www.bungie.net/Platform/GroupV2/User/2/4611686018468825852/all/1/

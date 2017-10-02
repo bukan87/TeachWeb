@@ -1,0 +1,24 @@
+{
+    "Request": "https://www.bungie.net/Platform/Destiny2/2/Profile/4611686018468825852/?components=100",
+    "Response": {
+        "profile": {
+            "data": {
+                "userInfo": {
+                    "membershipType": 2,
+                    "membershipId": "4611686018468825852",
+                    "displayName": "Bukan8704"
+                },
+                "dateLastPlayed": "2017-09-24T20:40:05Z",
+                "versionsOwned": 1,
+                "characterIds": ["2305843009261054865"]
+            },
+            "privacy": 1
+        },
+        "itemComponents": {}
+    },
+    "ErrorCode": 1,
+    "ThrottleSeconds": 0,
+    "ErrorStatus": "Success",
+    "Message": "Ok",
+    "MessageData": {}
+}

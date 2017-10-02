@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import ru.bukan.ssm.domain.model.Stats;
 import ru.bukan.ssm.domain.model.lesson.LessonDao;
 
 /**
@@ -18,6 +19,8 @@ public class TTest {
 
     @Test
     public void t(){
-        lessonDao.getStats();
+        for (Stats stats : lessonDao.getStats()) {
+            System.out.println(stats.getDay());
+        }
     }
 }

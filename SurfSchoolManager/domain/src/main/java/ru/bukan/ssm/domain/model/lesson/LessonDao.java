@@ -10,9 +10,12 @@ import ru.bukan.ssm.domain.model.customer.CustomerEntity;
 import ru.bukan.ssm.domain.model.instructor.InstructorEntity;
 import ru.bukan.ssm.domain.util.DateUtil;
 
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Query;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
@@ -113,9 +116,11 @@ public class LessonDao {
         return personList;
     }
 
-    public List<Stats> getStats(){
-        Query q = dao.getEm().createNativeQuery("SELECT date_trunc('day', start_date) d, count(*) as cnt FROM ls_lesson GROUP BY date_trunc('day', start_date)");
 
+
+    public List<Stats> getStats(){
+        Query q = dao.getEm().createNativeQuery("SELECT date_trunc('day', start_date) d, count(*) as cnt FROM ls_lesson GROUP BY date_trunc('day', start_date)",
+                "UpdateStatistics");
         return q.getResultList();
     }
 }

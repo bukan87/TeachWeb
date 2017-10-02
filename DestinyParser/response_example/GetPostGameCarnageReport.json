@@ -1,0 +1,1845 @@
+{
+    "Request": "https://www.bungie.net/Platform/Destiny2/Stats/PostGameCarnageReport/2236648719/",
+    "Response": {
+        "period": "2017-09-24T20:23:02Z",
+        "activityDetails": {
+            "referenceId": 2236648719,
+            "directorActivityHash": 3799743268,
+            "instanceId": "502495330",
+            "mode": 38,
+            "modes": [0, 5, 38, 39],
+            "isPrivate": false
+        },
+        "entries": [{
+            "standing": 0,
+            "score": {
+                "basic": {
+                    "value": 6.0,
+                    "displayValue": "6"
+                }
+            },
+            "player": {
+                "destinyUserInfo": {
+                    "iconPath": "/common/destiny2_content/icons/fc2a2d570b2a6be1fff0de19e22504bd.jpg",
+                    "membershipType": 2,
+                    "membershipId": "4611686018429012163",
+                    "displayName": "ThomasNoThumbs"
+                },
+                "characterClass": "Warlock",
+                "characterLevel": 20,
+                "lightLevel": 301,
+                "bungieNetUserInfo": {
+                    "iconPath": "/img/profile/avatars/s_tbagjx8.gif",
+                    "membershipType": 254,
+                    "membershipId": "5133823",
+                    "displayName": "ThomasNoThumbs"
+                }
+            },
+            "characterId": "2305843009261195127",
+            "values": {
+                "assists": {
+                    "basic": {
+                        "value": 4.0,
+                        "displayValue": "4"
+                    }
+                },
+                "score": {
+                    "basic": {
+                        "value": 6.0,
+                        "displayValue": "6"
+                    }
+                },
+                "kills": {
+                    "basic": {
+                        "value": 13.0,
+                        "displayValue": "13"
+                    }
+                },
+                "averageScorePerKill": {
+                    "basic": {
+                        "value": 0.46153846153846156,
+                        "displayValue": "0"
+                    }
+                },
+                "deaths": {
+                    "basic": {
+                        "value": 2.0,
+                        "displayValue": "2"
+                    }
+                },
+                "averageScorePerLife": {
+                    "basic": {
+                        "value": 2.0,
+                        "displayValue": "2"
+                    }
+                },
+                "completed": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "Yes"
+                    }
+                },
+                "killsDeathsRatio": {
+                    "basic": {
+                        "value": 6.5,
+                        "displayValue": "6.50"
+                    }
+                },
+                "killsDeathsAssists": {
+                    "basic": {
+                        "value": 7.5,
+                        "displayValue": "7.50"
+                    }
+                },
+                "activityDurationSeconds": {
+                    "basic": {
+                        "value": 523.0,
+                        "displayValue": "8m 43s"
+                    }
+                },
+                "standing": {
+                    "basic": {
+                        "value": 0.0,
+                        "displayValue": "Victory"
+                    }
+                },
+                "team": {
+                    "basic": {
+                        "value": 16.0,
+                        "displayValue": "Alpha"
+                    }
+                },
+                "completionReason": {
+                    "basic": {
+                        "value": 0.0,
+                        "displayValue": "0"
+                    }
+                },
+                "fireteamId": {
+                    "basic": {
+                        "value": -9.0146465935028736E+18,
+                        "displayValue": "-2147483648"
+                    }
+                },
+                "startSeconds": {
+                    "basic": {
+                        "value": 0.0,
+                        "displayValue": "0m 0s"
+                    }
+                },
+                "timePlayedSeconds": {
+                    "basic": {
+                        "value": 523.0,
+                        "displayValue": "8m 43s"
+                    }
+                },
+                "playerCount": {
+                    "basic": {
+                        "value": 8.0,
+                        "displayValue": "8"
+                    }
+                },
+                "teamScore": {
+                    "basic": {
+                        "value": 6.0,
+                        "displayValue": "6"
+                    }
+                }
+            },
+            "extended": {
+                "weapons": [{
+                    "referenceId": 1331482397,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 3.0,
+                                "displayValue": "3"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 2.0,
+                                "displayValue": "2"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 0.66666666666666663,
+                                "displayValue": "67%"
+                            }
+                        }
+                    }
+                }, {
+                    "referenceId": 3762467076,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 5.0,
+                                "displayValue": "5"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 4.0,
+                                "displayValue": "4"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 0.8,
+                                "displayValue": "80%"
+                            }
+                        }
+                    }
+                }],
+                "values": {
+                    "medalAvenger": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalCountdownRoundAllAlive": {
+                        "basic": {
+                            "value": 3.0,
+                            "displayValue": "3"
+                        }
+                    },
+                    "medalMatchBlowout": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalMatchMostDamage": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalMulti2x": {
+                        "basic": {
+                            "value": 3.0,
+                            "displayValue": "3"
+                        }
+                    },
+                    "medalMulti3x": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalMulti4x": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalMultiEntireTeam": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalPayback": {
+                        "basic": {
+                            "value": 3.0,
+                            "displayValue": "3"
+                        }
+                    },
+                    "medalQuickStrike": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalStreak10x": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalStreak5x": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalStreakCombined": {
+                        "basic": {
+                            "value": 3.0,
+                            "displayValue": "3"
+                        }
+                    },
+                    "medalStreakTeam": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "precisionKills": {
+                        "basic": {
+                            "value": 6.0,
+                            "displayValue": "6"
+                        }
+                    },
+                    "combatRating": {
+                        "basic": {
+                            "value": -1.0,
+                            "displayValue": "-"
+                        }
+                    }
+                }
+            }
+        }, {
+            "standing": 0,
+            "score": {
+                "basic": {
+                    "value": 6.0,
+                    "displayValue": "6"
+                }
+            },
+            "player": {
+                "destinyUserInfo": {
+                    "iconPath": "/common/destiny2_content/icons/0a8dfa6d28e2c49068f445613e27a5d5.jpg",
+                    "membershipType": 2,
+                    "membershipId": "4611686018428578353",
+                    "displayName": "arcaneus_als"
+                },
+                "characterClass": "Warlock",
+                "characterLevel": 20,
+                "lightLevel": 300,
+                "bungieNetUserInfo": {
+                    "iconPath": "/img/profile/avatars/Destiny16.jpg",
+                    "membershipType": 254,
+                    "membershipId": "5081788",
+                    "displayName": "Dark_Als"
+                }
+            },
+            "characterId": "2305843009261240798",
+            "values": {
+                "assists": {
+                    "basic": {
+                        "value": 6.0,
+                        "displayValue": "6"
+                    }
+                },
+                "score": {
+                    "basic": {
+                        "value": 6.0,
+                        "displayValue": "6"
+                    }
+                },
+                "kills": {
+                    "basic": {
+                        "value": 5.0,
+                        "displayValue": "5"
+                    }
+                },
+                "averageScorePerKill": {
+                    "basic": {
+                        "value": 1.2,
+                        "displayValue": "1"
+                    }
+                },
+                "deaths": {
+                    "basic": {
+                        "value": 2.0,
+                        "displayValue": "2"
+                    }
+                },
+                "averageScorePerLife": {
+                    "basic": {
+                        "value": 2.0,
+                        "displayValue": "2"
+                    }
+                },
+                "completed": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "Yes"
+                    }
+                },
+                "killsDeathsRatio": {
+                    "basic": {
+                        "value": 2.5,
+                        "displayValue": "2.50"
+                    }
+                },
+                "killsDeathsAssists": {
+                    "basic": {
+                        "value": 4.0,
+                        "displayValue": "4.00"
+                    }
+                },
+                "activityDurationSeconds": {
+                    "basic": {
+                        "value": 523.0,
+                        "displayValue": "8m 43s"
+                    }
+                },
+                "standing": {
+                    "basic": {
+                        "value": 0.0,
+                        "displayValue": "Victory"
+                    }
+                },
+                "team": {
+                    "basic": {
+                        "value": 16.0,
+                        "displayValue": "Alpha"
+                    }
+                },
+                "completionReason": {
+                    "basic": {
+                        "value": 0.0,
+                        "displayValue": "0"
+                    }
+                },
+                "fireteamId": {
+                    "basic": {
+                        "value": -9.0146465935028736E+18,
+                        "displayValue": "-2147483648"
+                    }
+                },
+                "startSeconds": {
+                    "basic": {
+                        "value": 3.0,
+                        "displayValue": "0m 3s"
+                    }
+                },
+                "timePlayedSeconds": {
+                    "basic": {
+                        "value": 520.0,
+                        "displayValue": "8m 40s"
+                    }
+                },
+                "playerCount": {
+                    "basic": {
+                        "value": 8.0,
+                        "displayValue": "8"
+                    }
+                },
+                "teamScore": {
+                    "basic": {
+                        "value": 6.0,
+                        "displayValue": "6"
+                    }
+                }
+            },
+            "extended": {
+                "weapons": [{
+                    "referenceId": 1331482397,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 3.0,
+                                "displayValue": "3"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 2.0,
+                                "displayValue": "2"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 0.66666666666666663,
+                                "displayValue": "67%"
+                            }
+                        }
+                    }
+                }, {
+                    "referenceId": 3762467076,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 2.0,
+                                "displayValue": "2"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 1.0,
+                                "displayValue": "1"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 0.5,
+                                "displayValue": "50%"
+                            }
+                        }
+                    }
+                }],
+                "values": {
+                    "medalCountdownRoundAllAlive": {
+                        "basic": {
+                            "value": 3.0,
+                            "displayValue": "3"
+                        }
+                    },
+                    "medalMatchBlowout": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalMulti2x": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalPayback": {
+                        "basic": {
+                            "value": 2.0,
+                            "displayValue": "2"
+                        }
+                    },
+                    "medalQuickStrike": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalStreak5x": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalStreakCombined": {
+                        "basic": {
+                            "value": 2.0,
+                            "displayValue": "2"
+                        }
+                    },
+                    "medalStreakTeam": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "precisionKills": {
+                        "basic": {
+                            "value": 3.0,
+                            "displayValue": "3"
+                        }
+                    },
+                    "combatRating": {
+                        "basic": {
+                            "value": -1.0,
+                            "displayValue": "-"
+                        }
+                    }
+                }
+            }
+        }, {
+            "standing": 0,
+            "score": {
+                "basic": {
+                    "value": 6.0,
+                    "displayValue": "6"
+                }
+            },
+            "player": {
+                "destinyUserInfo": {
+                    "iconPath": "/common/destiny2_content/icons/1e0d8f0ef0a80257bc499edc5f01d740.jpg",
+                    "membershipType": 2,
+                    "membershipId": "4611686018455563447",
+                    "displayName": "Mofesal"
+                },
+                "characterClass": "Warlock",
+                "characterLevel": 20,
+                "lightLevel": 289,
+                "bungieNetUserInfo": {
+                    "iconPath": "/img/profile/avatars/default_avatar.gif",
+                    "membershipType": 254,
+                    "membershipId": "12607245",
+                    "displayName": "Mofesal"
+                }
+            },
+            "characterId": "2305843009266365700",
+            "values": {
+                "assists": {
+                    "basic": {
+                        "value": 2.0,
+                        "displayValue": "2"
+                    }
+                },
+                "score": {
+                    "basic": {
+                        "value": 6.0,
+                        "displayValue": "6"
+                    }
+                },
+                "kills": {
+                    "basic": {
+                        "value": 6.0,
+                        "displayValue": "6"
+                    }
+                },
+                "averageScorePerKill": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "1"
+                    }
+                },
+                "deaths": {
+                    "basic": {
+                        "value": 4.0,
+                        "displayValue": "4"
+                    }
+                },
+                "averageScorePerLife": {
+                    "basic": {
+                        "value": 1.2,
+                        "displayValue": "1"
+                    }
+                },
+                "completed": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "Yes"
+                    }
+                },
+                "killsDeathsRatio": {
+                    "basic": {
+                        "value": 1.5,
+                        "displayValue": "1.50"
+                    }
+                },
+                "killsDeathsAssists": {
+                    "basic": {
+                        "value": 1.75,
+                        "displayValue": "1.75"
+                    }
+                },
+                "activityDurationSeconds": {
+                    "basic": {
+                        "value": 523.0,
+                        "displayValue": "8m 43s"
+                    }
+                },
+                "standing": {
+                    "basic": {
+                        "value": 0.0,
+                        "displayValue": "Victory"
+                    }
+                },
+                "team": {
+                    "basic": {
+                        "value": 16.0,
+                        "displayValue": "Alpha"
+                    }
+                },
+                "completionReason": {
+                    "basic": {
+                        "value": 0.0,
+                        "displayValue": "0"
+                    }
+                },
+                "fireteamId": {
+                    "basic": {
+                        "value": -9.0146465935028736E+18,
+                        "displayValue": "-2147483648"
+                    }
+                },
+                "startSeconds": {
+                    "basic": {
+                        "value": 3.0,
+                        "displayValue": "0m 3s"
+                    }
+                },
+                "timePlayedSeconds": {
+                    "basic": {
+                        "value": 520.0,
+                        "displayValue": "8m 40s"
+                    }
+                },
+                "playerCount": {
+                    "basic": {
+                        "value": 8.0,
+                        "displayValue": "8"
+                    }
+                },
+                "teamScore": {
+                    "basic": {
+                        "value": 6.0,
+                        "displayValue": "6"
+                    }
+                }
+            },
+            "extended": {
+                "weapons": [{
+                    "referenceId": 1331482397,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 1.0,
+                                "displayValue": "1"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 1.0,
+                                "displayValue": "1"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 1.0,
+                                "displayValue": "100%"
+                            }
+                        }
+                    }
+                }, {
+                    "referenceId": 3691881271,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 3.0,
+                                "displayValue": "3"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0%"
+                            }
+                        }
+                    }
+                }, {
+                    "referenceId": 1909527966,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 1.0,
+                                "displayValue": "1"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0%"
+                            }
+                        }
+                    }
+                }],
+                "values": {
+                    "medalAvenger": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalCountdownRoundAllAlive": {
+                        "basic": {
+                            "value": 3.0,
+                            "displayValue": "3"
+                        }
+                    },
+                    "medalMatchBlowout": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalMulti2x": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalPayback": {
+                        "basic": {
+                            "value": 3.0,
+                            "displayValue": "3"
+                        }
+                    },
+                    "medalQuickStrike": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalStreakTeam": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "precisionKills": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "combatRating": {
+                        "basic": {
+                            "value": -1.0,
+                            "displayValue": "-"
+                        }
+                    }
+                }
+            }
+        }, {
+            "standing": 0,
+            "score": {
+                "basic": {
+                    "value": 6.0,
+                    "displayValue": "6"
+                }
+            },
+            "player": {
+                "destinyUserInfo": {
+                    "iconPath": "/common/destiny2_content/icons/0b60b0d2d119a35a7883d81d9e409204.jpg",
+                    "membershipType": 2,
+                    "membershipId": "4611686018428538724",
+                    "displayName": "natr64"
+                },
+                "characterClass": "Warlock",
+                "characterLevel": 20,
+                "lightLevel": 298,
+                "bungieNetUserInfo": {
+                    "iconPath": "/img/profile/avatars/bungie_day_15_27.jpg",
+                    "membershipType": 254,
+                    "membershipId": "4960894",
+                    "displayName": "Ashley"
+                }
+            },
+            "characterId": "2305843009272439094",
+            "values": {
+                "assists": {
+                    "basic": {
+                        "value": 4.0,
+                        "displayValue": "4"
+                    }
+                },
+                "score": {
+                    "basic": {
+                        "value": 6.0,
+                        "displayValue": "6"
+                    }
+                },
+                "kills": {
+                    "basic": {
+                        "value": 4.0,
+                        "displayValue": "4"
+                    }
+                },
+                "averageScorePerKill": {
+                    "basic": {
+                        "value": 1.5,
+                        "displayValue": "2"
+                    }
+                },
+                "deaths": {
+                    "basic": {
+                        "value": 3.0,
+                        "displayValue": "3"
+                    }
+                },
+                "averageScorePerLife": {
+                    "basic": {
+                        "value": 1.5,
+                        "displayValue": "2"
+                    }
+                },
+                "completed": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "Yes"
+                    }
+                },
+                "killsDeathsRatio": {
+                    "basic": {
+                        "value": 1.3333333333333333,
+                        "displayValue": "1.33"
+                    }
+                },
+                "killsDeathsAssists": {
+                    "basic": {
+                        "value": 2.0,
+                        "displayValue": "2.00"
+                    }
+                },
+                "activityDurationSeconds": {
+                    "basic": {
+                        "value": 523.0,
+                        "displayValue": "8m 43s"
+                    }
+                },
+                "standing": {
+                    "basic": {
+                        "value": 0.0,
+                        "displayValue": "Victory"
+                    }
+                },
+                "team": {
+                    "basic": {
+                        "value": 16.0,
+                        "displayValue": "Alpha"
+                    }
+                },
+                "completionReason": {
+                    "basic": {
+                        "value": 0.0,
+                        "displayValue": "0"
+                    }
+                },
+                "fireteamId": {
+                    "basic": {
+                        "value": -9.0146465935028736E+18,
+                        "displayValue": "-2147483648"
+                    }
+                },
+                "startSeconds": {
+                    "basic": {
+                        "value": 2.0,
+                        "displayValue": "0m 2s"
+                    }
+                },
+                "timePlayedSeconds": {
+                    "basic": {
+                        "value": 521.0,
+                        "displayValue": "8m 41s"
+                    }
+                },
+                "playerCount": {
+                    "basic": {
+                        "value": 8.0,
+                        "displayValue": "8"
+                    }
+                },
+                "teamScore": {
+                    "basic": {
+                        "value": 6.0,
+                        "displayValue": "6"
+                    }
+                }
+            },
+            "extended": {
+                "weapons": [{
+                    "referenceId": 1879212552,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 1.0,
+                                "displayValue": "1"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0%"
+                            }
+                        }
+                    }
+                }, {
+                    "referenceId": 1331482397,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 2.0,
+                                "displayValue": "2"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0%"
+                            }
+                        }
+                    }
+                }],
+                "values": {
+                    "medalCountdownRoundAllAlive": {
+                        "basic": {
+                            "value": 3.0,
+                            "displayValue": "3"
+                        }
+                    },
+                    "medalMatchBlowout": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalPayback": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalQuickStrike": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalStreakCombined": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalStreakTeam": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "precisionKills": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "combatRating": {
+                        "basic": {
+                            "value": -1.0,
+                            "displayValue": "-"
+                        }
+                    }
+                }
+            }
+        }, {
+            "standing": 1,
+            "score": {
+                "basic": {
+                    "value": 1.0,
+                    "displayValue": "1"
+                }
+            },
+            "player": {
+                "destinyUserInfo": {
+                    "iconPath": "/common/destiny2_content/icons/28fad62e9ed456e8ac25cefd0f5e0fc2.jpg",
+                    "membershipType": 2,
+                    "membershipId": "4611686018468825852",
+                    "displayName": "Bukan8704"
+                },
+                "characterClass": "Warlock",
+                "characterLevel": 20,
+                "lightLevel": 291,
+                "bungieNetUserInfo": {
+                    "iconPath": "/img/profile/avatars/12.jpg",
+                    "membershipType": 254,
+                    "membershipId": "15528458",
+                    "displayName": "Bukan8704"
+                }
+            },
+            "characterId": "2305843009261054865",
+            "values": {
+                "assists": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "1"
+                    }
+                },
+                "score": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "1"
+                    }
+                },
+                "kills": {
+                    "basic": {
+                        "value": 4.0,
+                        "displayValue": "4"
+                    }
+                },
+                "averageScorePerKill": {
+                    "basic": {
+                        "value": 0.25,
+                        "displayValue": "0"
+                    }
+                },
+                "deaths": {
+                    "basic": {
+                        "value": 7.0,
+                        "displayValue": "7"
+                    }
+                },
+                "averageScorePerLife": {
+                    "basic": {
+                        "value": 0.125,
+                        "displayValue": "0"
+                    }
+                },
+                "completed": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "Yes"
+                    }
+                },
+                "killsDeathsRatio": {
+                    "basic": {
+                        "value": 0.5714285714285714,
+                        "displayValue": "0.57"
+                    }
+                },
+                "killsDeathsAssists": {
+                    "basic": {
+                        "value": 0.6428571428571429,
+                        "displayValue": "0.64"
+                    }
+                },
+                "activityDurationSeconds": {
+                    "basic": {
+                        "value": 523.0,
+                        "displayValue": "8m 43s"
+                    }
+                },
+                "standing": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "Defeat"
+                    }
+                },
+                "team": {
+                    "basic": {
+                        "value": 17.0,
+                        "displayValue": "Bravo"
+                    }
+                },
+                "completionReason": {
+                    "basic": {
+                        "value": 0.0,
+                        "displayValue": "0"
+                    }
+                },
+                "fireteamId": {
+                    "basic": {
+                        "value": 2.6894262584847826E+18,
+                        "displayValue": "-2147483648"
+                    }
+                },
+                "startSeconds": {
+                    "basic": {
+                        "value": 3.0,
+                        "displayValue": "0m 3s"
+                    }
+                },
+                "timePlayedSeconds": {
+                    "basic": {
+                        "value": 520.0,
+                        "displayValue": "8m 40s"
+                    }
+                },
+                "playerCount": {
+                    "basic": {
+                        "value": 8.0,
+                        "displayValue": "8"
+                    }
+                },
+                "teamScore": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "1"
+                    }
+                }
+            },
+            "extended": {
+                "weapons": [{
+                    "referenceId": 1331482397,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 1.0,
+                                "displayValue": "1"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0%"
+                            }
+                        }
+                    }
+                }, {
+                    "referenceId": 731147177,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 1.0,
+                                "displayValue": "1"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0%"
+                            }
+                        }
+                    }
+                }],
+                "values": {
+                    "medalAvenger": {
+                        "basic": {
+                            "value": 2.0,
+                            "displayValue": "2"
+                        }
+                    },
+                    "medalDefeatWarlockSigil": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalPayback": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "precisionKills": {
+                        "basic": {
+                            "value": 2.0,
+                            "displayValue": "2"
+                        }
+                    },
+                    "combatRating": {
+                        "basic": {
+                            "value": -1.0,
+                            "displayValue": "-"
+                        }
+                    }
+                }
+            }
+        }, {
+            "standing": 1,
+            "score": {
+                "basic": {
+                    "value": 1.0,
+                    "displayValue": "1"
+                }
+            },
+            "player": {
+                "destinyUserInfo": {
+                    "iconPath": "/common/destiny2_content/icons/3a4d23a3fc66fb10f6d96bad6f839a3d.jpg",
+                    "membershipType": 2,
+                    "membershipId": "4611686018445452963",
+                    "displayName": "Just_Mitya"
+                },
+                "characterClass": "Warlock",
+                "characterLevel": 20,
+                "lightLevel": 295,
+                "bungieNetUserInfo": {
+                    "iconPath": "/img/profile/avatars/bungieday_23.jpg",
+                    "membershipType": 254,
+                    "membershipId": "9406755",
+                    "displayName": "Justmitya"
+                }
+            },
+            "characterId": "2305843009262054901",
+            "values": {
+                "assists": {
+                    "basic": {
+                        "value": 0.0,
+                        "displayValue": "0"
+                    }
+                },
+                "score": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "1"
+                    }
+                },
+                "kills": {
+                    "basic": {
+                        "value": 4.0,
+                        "displayValue": "4"
+                    }
+                },
+                "averageScorePerKill": {
+                    "basic": {
+                        "value": 0.25,
+                        "displayValue": "0"
+                    }
+                },
+                "deaths": {
+                    "basic": {
+                        "value": 7.0,
+                        "displayValue": "7"
+                    }
+                },
+                "averageScorePerLife": {
+                    "basic": {
+                        "value": 0.125,
+                        "displayValue": "0"
+                    }
+                },
+                "completed": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "Yes"
+                    }
+                },
+                "killsDeathsRatio": {
+                    "basic": {
+                        "value": 0.5714285714285714,
+                        "displayValue": "0.57"
+                    }
+                },
+                "killsDeathsAssists": {
+                    "basic": {
+                        "value": 0.5714285714285714,
+                        "displayValue": "0.57"
+                    }
+                },
+                "activityDurationSeconds": {
+                    "basic": {
+                        "value": 523.0,
+                        "displayValue": "8m 43s"
+                    }
+                },
+                "standing": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "Defeat"
+                    }
+                },
+                "team": {
+                    "basic": {
+                        "value": 17.0,
+                        "displayValue": "Bravo"
+                    }
+                },
+                "completionReason": {
+                    "basic": {
+                        "value": 0.0,
+                        "displayValue": "0"
+                    }
+                },
+                "fireteamId": {
+                    "basic": {
+                        "value": 2.6894262584847826E+18,
+                        "displayValue": "-2147483648"
+                    }
+                },
+                "startSeconds": {
+                    "basic": {
+                        "value": 4.0,
+                        "displayValue": "0m 4s"
+                    }
+                },
+                "timePlayedSeconds": {
+                    "basic": {
+                        "value": 519.0,
+                        "displayValue": "8m 39s"
+                    }
+                },
+                "playerCount": {
+                    "basic": {
+                        "value": 8.0,
+                        "displayValue": "8"
+                    }
+                },
+                "teamScore": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "1"
+                    }
+                }
+            },
+            "extended": {
+                "weapons": [{
+                    "referenceId": 3628991659,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 3.0,
+                                "displayValue": "3"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 2.0,
+                                "displayValue": "2"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 0.66666666666666663,
+                                "displayValue": "67%"
+                            }
+                        }
+                    }
+                }, {
+                    "referenceId": 1825472717,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 1.0,
+                                "displayValue": "1"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0%"
+                            }
+                        }
+                    }
+                }],
+                "values": {
+                    "precisionKills": {
+                        "basic": {
+                            "value": 2.0,
+                            "displayValue": "2"
+                        }
+                    },
+                    "combatRating": {
+                        "basic": {
+                            "value": -1.0,
+                            "displayValue": "-"
+                        }
+                    }
+                }
+            }
+        }, {
+            "standing": 1,
+            "score": {
+                "basic": {
+                    "value": 1.0,
+                    "displayValue": "1"
+                }
+            },
+            "player": {
+                "destinyUserInfo": {
+                    "iconPath": "/common/destiny2_content/icons/15f6e21a184429bb48cf071dc0893852.jpg",
+                    "membershipType": 2,
+                    "membershipId": "4611686018467013856",
+                    "displayName": "RyabaChicken"
+                },
+                "characterClass": "Warlock",
+                "characterLevel": 20,
+                "lightLevel": 292,
+                "bungieNetUserInfo": {
+                    "iconPath": "/img/profile/avatars/bungieday_06.jpg",
+                    "membershipType": 254,
+                    "membershipId": "15239329",
+                    "displayName": "RyabaChicken"
+                }
+            },
+            "characterId": "2305843009262194850",
+            "values": {
+                "assists": {
+                    "basic": {
+                        "value": 4.0,
+                        "displayValue": "4"
+                    }
+                },
+                "score": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "1"
+                    }
+                },
+                "kills": {
+                    "basic": {
+                        "value": 2.0,
+                        "displayValue": "2"
+                    }
+                },
+                "averageScorePerKill": {
+                    "basic": {
+                        "value": 0.5,
+                        "displayValue": "1"
+                    }
+                },
+                "deaths": {
+                    "basic": {
+                        "value": 7.0,
+                        "displayValue": "7"
+                    }
+                },
+                "averageScorePerLife": {
+                    "basic": {
+                        "value": 0.125,
+                        "displayValue": "0"
+                    }
+                },
+                "completed": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "Yes"
+                    }
+                },
+                "killsDeathsRatio": {
+                    "basic": {
+                        "value": 0.2857142857142857,
+                        "displayValue": "0.29"
+                    }
+                },
+                "killsDeathsAssists": {
+                    "basic": {
+                        "value": 0.5714285714285714,
+                        "displayValue": "0.57"
+                    }
+                },
+                "activityDurationSeconds": {
+                    "basic": {
+                        "value": 523.0,
+                        "displayValue": "8m 43s"
+                    }
+                },
+                "standing": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "Defeat"
+                    }
+                },
+                "team": {
+                    "basic": {
+                        "value": 17.0,
+                        "displayValue": "Bravo"
+                    }
+                },
+                "completionReason": {
+                    "basic": {
+                        "value": 0.0,
+                        "displayValue": "0"
+                    }
+                },
+                "fireteamId": {
+                    "basic": {
+                        "value": 2.6894262584847826E+18,
+                        "displayValue": "-2147483648"
+                    }
+                },
+                "startSeconds": {
+                    "basic": {
+                        "value": 4.0,
+                        "displayValue": "0m 4s"
+                    }
+                },
+                "timePlayedSeconds": {
+                    "basic": {
+                        "value": 519.0,
+                        "displayValue": "8m 39s"
+                    }
+                },
+                "playerCount": {
+                    "basic": {
+                        "value": 8.0,
+                        "displayValue": "8"
+                    }
+                },
+                "teamScore": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "1"
+                    }
+                }
+            },
+            "extended": {
+                "weapons": [{
+                    "referenceId": 1909527966,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 1.0,
+                                "displayValue": "1"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 0.0,
+                                "displayValue": "0%"
+                            }
+                        }
+                    }
+                }],
+                "values": {
+                    "medalAvenger": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "medalPayback": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "combatRating": {
+                        "basic": {
+                            "value": -1.0,
+                            "displayValue": "-"
+                        }
+                    }
+                }
+            }
+        }, {
+            "standing": 1,
+            "score": {
+                "basic": {
+                    "value": 1.0,
+                    "displayValue": "1"
+                }
+            },
+            "player": {
+                "destinyUserInfo": {
+                    "iconPath": "/common/destiny2_content/icons/ca0c018e9634f8d603691cb891bab008.jpg",
+                    "membershipType": 2,
+                    "membershipId": "4611686018466024941",
+                    "displayName": "Shaman666rus"
+                },
+                "characterClass": "Hunter",
+                "characterLevel": 20,
+                "lightLevel": 292,
+                "bungieNetUserInfo": {
+                    "iconPath": "/img/profile/avatars/cc65.jpg",
+                    "membershipType": 254,
+                    "membershipId": "15180865",
+                    "displayName": "Shaman666rus"
+                }
+            },
+            "characterId": "2305843009263776559",
+            "values": {
+                "assists": {
+                    "basic": {
+                        "value": 2.0,
+                        "displayValue": "2"
+                    }
+                },
+                "score": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "1"
+                    }
+                },
+                "kills": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "1"
+                    }
+                },
+                "averageScorePerKill": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "1"
+                    }
+                },
+                "deaths": {
+                    "basic": {
+                        "value": 7.0,
+                        "displayValue": "7"
+                    }
+                },
+                "averageScorePerLife": {
+                    "basic": {
+                        "value": 0.125,
+                        "displayValue": "0"
+                    }
+                },
+                "completed": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "Yes"
+                    }
+                },
+                "killsDeathsRatio": {
+                    "basic": {
+                        "value": 0.14285714285714285,
+                        "displayValue": "0.14"
+                    }
+                },
+                "killsDeathsAssists": {
+                    "basic": {
+                        "value": 0.2857142857142857,
+                        "displayValue": "0.29"
+                    }
+                },
+                "activityDurationSeconds": {
+                    "basic": {
+                        "value": 523.0,
+                        "displayValue": "8m 43s"
+                    }
+                },
+                "standing": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "Defeat"
+                    }
+                },
+                "team": {
+                    "basic": {
+                        "value": 17.0,
+                        "displayValue": "Bravo"
+                    }
+                },
+                "completionReason": {
+                    "basic": {
+                        "value": 0.0,
+                        "displayValue": "0"
+                    }
+                },
+                "fireteamId": {
+                    "basic": {
+                        "value": 2.6894262584847826E+18,
+                        "displayValue": "-2147483648"
+                    }
+                },
+                "startSeconds": {
+                    "basic": {
+                        "value": 4.0,
+                        "displayValue": "0m 4s"
+                    }
+                },
+                "timePlayedSeconds": {
+                    "basic": {
+                        "value": 519.0,
+                        "displayValue": "8m 39s"
+                    }
+                },
+                "playerCount": {
+                    "basic": {
+                        "value": 8.0,
+                        "displayValue": "8"
+                    }
+                },
+                "teamScore": {
+                    "basic": {
+                        "value": 1.0,
+                        "displayValue": "1"
+                    }
+                }
+            },
+            "extended": {
+                "weapons": [{
+                    "referenceId": 1331482397,
+                    "values": {
+                        "uniqueWeaponKills": {
+                            "basic": {
+                                "value": 1.0,
+                                "displayValue": "1"
+                            }
+                        },
+                        "uniqueWeaponPrecisionKills": {
+                            "basic": {
+                                "value": 1.0,
+                                "displayValue": "1"
+                            }
+                        },
+                        "uniqueWeaponKillsPrecisionKills": {
+                            "basic": {
+                                "value": 1.0,
+                                "displayValue": "100%"
+                            }
+                        }
+                    }
+                }],
+                "values": {
+                    "medalPayback": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "precisionKills": {
+                        "basic": {
+                            "value": 1.0,
+                            "displayValue": "1"
+                        }
+                    },
+                    "combatRating": {
+                        "basic": {
+                            "value": -1.0,
+                            "displayValue": "-"
+                        }
+                    }
+                }
+            }
+        }],
+        "teams": [{
+            "teamId": 16,
+            "standing": {
+                "basic": {
+                    "value": 0.0,
+                    "displayValue": "Victory"
+                }
+            },
+            "score": {
+                "basic": {
+                    "value": 6.0,
+                    "displayValue": "6"
+                }
+            },
+            "teamName": "Alpha"
+        }, {
+            "teamId": 17,
+            "standing": {
+                "basic": {
+                    "value": 1.0,
+                    "displayValue": "Defeat"
+                }
+            },
+            "score": {
+                "basic": {
+                    "value": 1.0,
+                    "displayValue": "1"
+                }
+            },
+            "teamName": "Bravo"
+        }]
+    },
+    "ErrorCode": 1,
+    "ThrottleSeconds": 0,
+    "ErrorStatus": "Success",
+    "Message": "Ok",
+    "MessageData": {}
+}

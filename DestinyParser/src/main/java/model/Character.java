@@ -10,7 +10,10 @@ import java.util.Map;
 public class Character {
     private long id;
     private int light;
-    private Map<GameType, Map<String, String>> gameIndicators;
+    private Clan clan;
+
+    //private Map<GameType, Map<String, String>> gameIndicators;
+    private Map<GameType, Map<String, Map<String, String>>> gameIndicators;
 
     public long getId() {
         return id;
@@ -28,7 +31,15 @@ public class Character {
         this.light = light;
     }
 
-    public Map<GameType, Map<String, String>> getGameIndicators() {
+    public Clan getClan() {
+        return clan;
+    }
+
+    public void setClan(Clan clan) {
+        this.clan = clan;
+    }
+
+    public Map<GameType, Map<String, Map<String, String>>> getGameIndicators() {
         if (gameIndicators == null) {
             gameIndicators = new HashMap<>();
         }

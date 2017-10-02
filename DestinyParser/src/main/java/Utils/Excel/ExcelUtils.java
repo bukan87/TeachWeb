@@ -1,4 +1,4 @@
-package Utils;
+package Utils.Excel;
 
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -16,10 +16,16 @@ public class ExcelUtils {
      * @param cell ячейка
      */
     public static void alignCenter(XSSFCell cell){
-        XSSFCellStyle style = cell.getRow().getSheet().getWorkbook().createCellStyle();
-        style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
-        style.setAlignment(CellStyle.ALIGN_CENTER);
-        cell.setCellStyle(style);
+        if (cell != null) {
+            XSSFCellStyle style = cell
+                    .getRow()
+                    .getSheet()
+                    .getWorkbook()
+                    .createCellStyle();
+            style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+            style.setAlignment(CellStyle.ALIGN_CENTER);
+            cell.setCellStyle(style);
+        }
     }
 
     /**

@@ -13,6 +13,14 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "ls_lesson", schema = "public", catalog = "sfm_dev")
+@SqlResultSetMapping(name = "UpdateStatistics"
+        , classes = {
+        @ConstructorResult(targetClass = ru.bukan.ssm.domain.model.Stats.class,
+                columns = {
+                        @ColumnResult(name = "d", type = Date.class),
+                        @ColumnResult(name = "cnt", type = Integer.class)
+                })
+})
 public class LessonEntity implements Serializable {
     private Long id;
     private Date startDate;

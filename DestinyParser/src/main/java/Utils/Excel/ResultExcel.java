@@ -1,10 +1,7 @@
-package Utils;
+package Utils.Excel;
 
+import Utils.Settings;
 import model.GameType;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -16,9 +13,7 @@ import java.util.Map;
 /**
  * @author by Ilin_ai on 21.09.2017.
  */
-public class ResultExcel {
-
-    private XSSFWorkbook resultWorkBook = new XSSFWorkbook();
+public class ResultExcel extends Excel {
 
     private static ResultExcel instance = new ResultExcel();
 
@@ -27,22 +22,6 @@ public class ResultExcel {
 
     public static ResultExcel getInstance(){
         return instance;
-    }
-
-    /**
-     * Запись таблицы эксель в файл
-     */
-    public void write(){
-        try {
-            resultWorkBook.write(new FileOutputStream("result.xlsx"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            resultWorkBook.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -61,9 +40,8 @@ public class ResultExcel {
      * @return страница
      */
     public XSSFSheet getSheet(GameType gameType){
-        XSSFSheet result = resultWorkBook.getSheet(gameType.settingsSheetName);
-        if (result == null){
-            result = resultWorkBook.createSheet(gameType.settingsSheetName);
+        XSSFSheet result = getSheet(gameType.settingsSheetName);
+        if (result.getRow(0) == null){
             setHeader(gameType);
         }
         return result;
@@ -74,13 +52,14 @@ public class ResultExcel {
      * @param gameType тип игры
      */
     private void setHeader(GameType gameType){
-        XSSFSheet sheet = getSheet(gameType);
+        XSSFSheet sheet = getSheet(gameType.settingsSheetName);
         XSSFRow headerRow = sheet.createRow(0);
         int cellNum = 0;
         // Общие атрибуты
         headerRow.createCell(cellNum++).setCellValue("Имя бойца");
         headerRow.createCell(cellNum++).setCellValue("Персонаж");
         headerRow.createCell(cellNum++).setCellValue("Лайт");
+        headerRow.createCell(cellNum++).setCellValue("День");
 
         // Показатели игры
         Map<String, String> settings = Settings.getInstance().getGameParams(gameType);

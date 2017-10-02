@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Player {
     private long id;
-    private long clanId;
+    private Clan clan;
     private String name;
     private int membershipType;
     private List<Character> characters;
@@ -22,12 +22,16 @@ public class Player {
         this.id = id;
     }
 
-    public long getClanId() {
-        return clanId;
+    public Clan getClan() {
+        return clan;
     }
 
-    public void setClanId(long clanId) {
-        this.clanId = clanId;
+    public void setClan(Clan clan) {
+        this.clan = clan;
+    }
+
+    public void setCharacters(List<Character> characters) {
+        this.characters = characters;
     }
 
     public String getName() {

@@ -1,24 +1,32 @@
 package Utils;
 
 import model.Character;
+import model.Clan;
+import model.Event;
 import model.GameType;
 import model.Player;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author by Ilin_ai on 21.09.2017.
  */
+// TODO здесь должны быть только методы от сайта. Остальную логику нужно перенести в другой класс
 public class BungieMethods {
+    public static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+
     private static final String BASE_URL = "https://www.bungie.net/Platform/";
     private static final String CLAN_NAME = "Russian Warriors";
     private long clanId = 0L;
+    private List<Long> loadedEvents = new ArrayList<>();
 
     private JSONObject basicGet(String addPath){
         String url = BASE_URL + addPath;
@@ -44,6 +52,25 @@ public class BungieMethods {
     }
 
     /**
+     * Определение клана по игроку
+     * @param playerId идентификатор игрока
+     * @param memberType тип игрока
+     * @return Клан
+     */
+    public Clan getClanByMember(long playerId, int memberType){
+        Clan clan = new Clan();
+        JSONObject clanInfo = basicGet("/GroupV2/User/" + memberType + "/" + playerId + "/all/1/");
+        if (clanInfo.getJSONArray("results").length() == 0){
+            // TODO nullPointer
+            return new Clan();
+        }
+        clanInfo = ((JSONObject)clanInfo.getJSONArray("results").get(0)).getJSONObject("group");
+        clan.setClanID(clanInfo.getLong("groupId"));
+        clan.setName(clanInfo.getString("name"));
+        return clan;
+    }
+
+    /**
      * Выдача списка участников клана
      * @return список участников клана
      */
@@ -59,7 +86,7 @@ public class BungieMethods {
             if (array.length() > 0) {
                 int exit = 0;
                 for (int i = 0; i < array.length(); i++) {
-                    //if (exit++ == 20) break;
+                    //if (exit++ == 2) break;
 
                     JSONObject playerObject = (JSONObject)array.get(i);
                     Player player = new Player();
@@ -99,6 +126,45 @@ public class BungieMethods {
     }
 
     /**
+     *
+     * @return
+     */
+    public List<Long> getClanMembersId(){
+        int page = 0;
+        boolean isExistsPage = true;
+        List<Long> playersId = new ArrayList<>();
+
+        while (isExistsPage) {
+            page++;
+            JSONObject obj = basicGet("/GroupV2/" + getClanId() + "/Members/?currentPage=" + page);
+            JSONArray array = obj.getJSONArray("results");
+            if (array.length() > 0) {
+                int exit = 0;
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject playerObject = (JSONObject)array.get(i);
+                    playersId.add(playerObject.getJSONObject("destinyUserInfo").getLong("membershipId"));
+                }
+            }
+            // Проверка наличия страниц далее
+            isExistsPage = obj.getBoolean("hasMore");
+        }
+        return playersId;
+    }
+
+    public List<Long> getCharactersId(long playerId){
+        List<Long> charactersId = new ArrayList<>();
+        JSONArray characters = basicGet("/Destiny2/" + 2 + "/Profile/" + playerId + "/?components=100")
+                .getJSONObject("profile")
+                .getJSONObject("data")
+                .getJSONArray("characterIds");
+        for (Object character : characters) {
+            charactersId.add(Long.valueOf((String)character));
+        }
+
+        return charactersId;
+    }
+
+    /**
      * Выборка персонажей по пользователю
      */
     private List<Character> getCharacters(long id, int memberType){
@@ -121,7 +187,7 @@ public class BungieMethods {
                     .getJSONObject("data")
                     .getInt("light");
             character.setLight(light);
-            Map<GameType, Map<String, String>> gameIndicators = character.getGameIndicators();
+            Map<GameType, Map<String, Map<String, String>>> gameIndicators = character.getGameIndicators();
             for (GameType gameType : GameType.values()){
                 gameIndicators.put(gameType, getCharacterGameIndicators(id, memberType, character.getId(), gameType));
             }
@@ -138,21 +204,144 @@ public class BungieMethods {
      * @param gameType тип игры
      * @return массив тип показателя: значение
      */
-    public Map<String, String> getCharacterGameIndicators(long playerId, int memberType, long characterId, GameType gameType){
+    public Map<String, Map<String, String>> getCharacterGameIndicators(long playerId, int memberType, long characterId, GameType gameType){
+        // TODO Сделать так что бы входные параметры брались из файла( если даты не указаны, то allTime иначе Daily)
         JSONObject indicators = basicGet("Destiny2/" + memberType + "/Account/" + playerId + "/Character/" + characterId
-                + "/Stats/?periodType=AllTime&modes=" + gameType.paramName).getJSONObject(gameType.keyName);
+                + "/Stats/?&modes=" + gameType.paramName + "&daystart=2017-09-25&dayend=2017-10-01&periodType=Daily").getJSONObject(gameType.keyName);
         System.out.println(indicators);
-        if (!indicators.has("allTime")){
+        if (indicators.has("allTime")) {
+            indicators = indicators.getJSONObject("allTime");
+            Map<String, Map<String, String>> result = new HashMap<>();
+            result.put("all", getCharacterGameIndicator(indicators, gameType));
+            return result;
+        } else if (indicators.has("daily")){
+            Map<String, Map<String, String>> result = new LinkedHashMap<>();
+            for (Object daily : indicators.getJSONArray("daily")) {
+                JSONObject day = (JSONObject) daily;
+                String date = day.getString("period").substring(0, 10);
+                result.put(date, getCharacterGameIndicator(day.getJSONObject("values"), gameType));
+            }
+            return result;
+        }else {
             System.out.println("У персонажа " + characterId + " нет метрик по типу игры " + gameType.paramName);
             return new HashMap<>();
         }
-        indicators = indicators.getJSONObject("allTime");
+    }
 
+    private Map<String, String> getCharacterGameIndicator(JSONObject indicators, GameType gameType){
         Map<String, String> result = new HashMap<>();
         for (String indicator : Settings.getInstance().getGameParams(gameType).keySet()){
-            result.put(indicator, indicators.getJSONObject(indicator)
-                    .getJSONObject("basic")
-                    .getString("displayValue"));
+            if (indicators.has(indicator)) {
+                result.put(indicator, indicators.getJSONObject(indicator)
+                        .getJSONObject("basic")
+                        .getString("displayValue"));
+            }else {
+                result.put(indicator, null);
+            }
+        }
+        return result;
+    }
+
+    private Map<Long, Clan> playersClan = new HashMap<>();
+
+    /**
+     * Выдача сведений о событиях
+     * @param playerId идентфикактор игрока
+     * @param memberType тип участника
+     */
+    public List<Event> getEvents(long playerId, int memberType, long characterId, GameType gameType){
+
+        class EventMember{
+            private long playerId;
+            private int memberType;
+            private String playerName;
+            private String teamName;
+        }
+        List<Event> result = new ArrayList<>();
+
+        // Выборка всех событий
+        int page = 0;
+        while (true) {
+            JSONObject obj = basicGet("/Destiny2/" + memberType + "/Account/"
+                    + playerId + "/Character/" + characterId + "/Stats/Activities/?count=100&page=" + page++ + "&mode=" + gameType.paramName);
+            if (obj == null) {
+                break;
+            }
+            if (!obj.has("activities"))
+                break;
+            System.out.println(obj);
+            JSONArray events = obj.getJSONArray("activities");
+            // Теперь войдём в каждое событие
+            for (int i = 0; i < events.length(); i++){
+                Event event = new Event();
+                event.setEventId(((JSONObject)events.get(i)).getJSONObject("activityDetails").getLong("instanceId"));
+
+                try {
+                    event.setEventDate(DATE_TIME_FORMAT.parse(((JSONObject)events.get(i)).getString("period").replaceAll("Z", "+0000")));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                //event.setEventDate(((JSONObject)events.get(i)).getString());
+
+                // Если событие уже обрабатывалось, то не будем больше его обрабатывать
+                if (loadedEvents.contains(event.getEventId())){
+                    continue;
+                }
+                loadedEvents.add(event.getEventId());
+
+                // Достанем идентфикаторы участников и приндалежность к командам
+                JSONArray eventMembersSrc = basicGet("/Destiny2/Stats/PostGameCarnageReport/" + event.getEventId() + "/").getJSONArray("entries");
+                List<EventMember> eventMembers = new ArrayList<>();
+                String playerTeam = null;
+                for (Object eventMember : eventMembersSrc) {
+                    EventMember ev = new EventMember();
+                    ev.playerId = ((JSONObject)eventMember)
+                            .getJSONObject("player")
+                            .getJSONObject("destinyUserInfo")
+                            .getLong("membershipId");
+                    ev.playerName = ((JSONObject)eventMember)
+                            .getJSONObject("player")
+                            .getJSONObject("destinyUserInfo")
+                            .getString("displayName");
+                    if (((JSONObject)eventMember).getJSONObject("values").has("team")) {
+                        ev.teamName = ((JSONObject) eventMember)
+                                .getJSONObject("values")
+                                .getJSONObject("team")
+                                .getJSONObject("basic")
+                                .getString("displayValue");
+                    }
+                    ev.memberType = ((JSONObject)eventMember)
+                            .getJSONObject("player")
+                            .getJSONObject("destinyUserInfo")
+                            .getInt("membershipType");
+                    eventMembers.add(ev);
+                    // Запишем название команды, в которой учавствовал игрок, по которому ищем команды
+                    if (ev.playerId == playerId){
+                        playerTeam = ev.teamName;
+                    }
+                }
+                // Разделим участников на команды
+                for (EventMember member : eventMembers) {
+                    Clan playerClan;
+                    if (playersClan.containsKey(member.playerId)){
+                        playerClan = playersClan.get(member.playerId);
+                    }else {
+                        playerClan = getClanByMember(member.playerId, member.memberType);
+                        playersClan.put(member.playerId, playerClan);
+                    }
+                    Player player = new Player();
+                    player.setId(member.playerId);
+                    player.setMembershipType(member.memberType);
+                    player.setName(member.playerName);
+                    player.setClan(playerClan);
+                    if (playerTeam == null || playerTeam.equals(member.teamName)){
+                        event.getTeammates().add(player);
+                    }else{
+                        event.getEnemies().add(player);
+                    }
+                }
+                result.add(event);
+            }
         }
         return result;
     }

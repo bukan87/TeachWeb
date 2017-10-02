@@ -1,0 +1,138 @@
+{
+    "Request": "https://www.bungie.net/Platform/GroupV2/User/2/4611686018468825852/all/1/",
+    "Response": {
+        "results": [{
+            "member": {
+                "memberType": 1,
+                "isOnline": false,
+                "groupId": "2070835",
+                "destinyUserInfo": {
+                    "iconPath": "/img/theme/destiny/icons/icon_psn.png",
+                    "membershipType": 2,
+                    "membershipId": "4611686018468825852",
+                    "displayName": "Bukan8704"
+                },
+                "joinDate": "2017-09-03T08:22:19Z"
+            },
+            "group": {
+                "groupId": "2070835",
+                "name": "Russian Warriors",
+                "groupType": 1,
+                "membershipIdCreated": "5425453",
+                "creationDate": "2015-02-06T17:59:08.031Z",
+                "modificationDate": "2017-09-21T11:35:45.605Z",
+                "about": "Наши чаты:\n\nПоиск напарников:\nhttps://t.me/fireteam_rw\n\nИгра и все,что с ней связано:\nhttps://t.me/rw_destiny\n\nСвободные темы:\nhttps://t.me/rw_community\n\nИнформационный канал:\nhttps://t.me/rw_info\n\nБольшая просьба соблюдать тематику чатов,это для вашего же удобства.",
+                "tags": [],
+                "memberCount": 100,
+                "isPublic": false,
+                "isPublicTopicAdminOnly": false,
+                "primaryAlliedGroupId": "815062",
+                "motto": "Просторы вселенной сплотят нас воедино.Мы непобедимы!",
+                "allowChat": true,
+                "isDefaultPostPublic": false,
+                "chatSecurity": 0,
+                "locale": "ru",
+                "avatarImageIndex": 70036,
+                "homepage": 0,
+                "membershipOption": 1,
+                "defaultPublicity": 2,
+                "theme": "Group_Vanguard",
+                "bannerPath": "/img/Themes/Group_Vanguard/struct_images/group_top_banner.jpg",
+                "avatarPath": "/img/profile/avatars/group/036.png",
+                "isAllianceOwner": false,
+                "conversationId": "27022432",
+                "enableInvitationMessagingForAdmins": true,
+                "banExpireDate": "2001-01-01T00:00:00Z",
+                "features": {
+                    "maximumMembers": 100,
+                    "maximumMembershipsOfGroupType": 1,
+                    "capabilities": 31,
+                    "membershipTypes": [1, 2, 4, 10],
+                    "invitePermissionOverride": true,
+                    "updateCulturePermissionOverride": true,
+                    "hostGuidedGamePermissionOverride": 2,
+                    "updateBannerPermissionOverride": true,
+                    "joinLevel": 1
+                },
+                "clanInfo": {
+                    "d2ClanProgressions": {
+                        "584850370": {
+                            "progressionHash": 584850370,
+                            "dailyProgress": 300000,
+                            "dailyLimit": 0,
+                            "weeklyProgress": 100000,
+                            "weeklyLimit": 100000,
+                            "currentProgress": 300000,
+                            "level": 3,
+                            "levelCap": 6,
+                            "stepIndex": 3,
+                            "progressToNextLevel": 75000,
+                            "nextLevelAt": 125000
+                        },
+                        "1273404180": {
+                            "progressionHash": 1273404180,
+                            "dailyProgress": 0,
+                            "dailyLimit": 0,
+                            "weeklyProgress": 0,
+                            "weeklyLimit": 0,
+                            "currentProgress": 0,
+                            "level": 1,
+                            "levelCap": 6,
+                            "stepIndex": 1,
+                            "progressToNextLevel": 0,
+                            "nextLevelAt": 1
+                        },
+                        "3759191272": {
+                            "progressionHash": 3759191272,
+                            "dailyProgress": 0,
+                            "dailyLimit": 0,
+                            "weeklyProgress": 0,
+                            "weeklyLimit": 0,
+                            "currentProgress": 0,
+                            "level": 1,
+                            "levelCap": 6,
+                            "stepIndex": 1,
+                            "progressToNextLevel": 0,
+                            "nextLevelAt": 1
+                        },
+                        "3381682691": {
+                            "progressionHash": 3381682691,
+                            "dailyProgress": 0,
+                            "dailyLimit": 0,
+                            "weeklyProgress": 0,
+                            "weeklyLimit": 0,
+                            "currentProgress": 0,
+                            "level": 1,
+                            "levelCap": 6,
+                            "stepIndex": 1,
+                            "progressToNextLevel": 0,
+                            "nextLevelAt": 1
+                        }
+                    },
+                    "clanCallsign": "RUS",
+                    "clanBannerData": {
+                        "decalId": 4142223378,
+                        "decalColorId": 3396165389,
+                        "decalBackgroundColorId": 3568748756,
+                        "gonfalonId": 1473910866,
+                        "gonfalonColorId": 2157636323,
+                        "gonfalonDetailId": 1647698442,
+                        "gonfalonDetailColorId": 4128900497
+                    }
+                }
+            }
+        }],
+        "totalResults": 1,
+        "hasMore": false,
+        "query": {
+            "itemsPerPage": 1000,
+            "currentPage": 1
+        },
+        "useTotalResults": true
+    },
+    "ErrorCode": 1,
+    "ThrottleSeconds": 0,
+    "ErrorStatus": "Success",
+    "Message": "Ok",
+    "MessageData": {}
+}
