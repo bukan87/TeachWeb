@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-workspace name="Bungie" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:project status="CLOSED" name="REST Project 1">D:/Repo/Git/TeachWeb/DestinyParser/response_example/REST-Project-1-soapui-project.xml</con:project>
+  <con:project name="REST Project 1">D:/Repo/Git/TeachWeb/DestinyParser/response_example/soapUI/REST-Project-1-soapui-project.xml</con:project>
+</con:soapui-workspace>

@@ -22,9 +22,10 @@ import java.util.Map;
 // TODO здесь должны быть только методы от сайта. Остальную логику нужно перенести в другой класс
 public class BungieMethods {
     public static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     private static final String BASE_URL = "https://www.bungie.net/Platform/";
-    private static final String CLAN_NAME = "Russian Warriors";
+    private static final String CLAN_NAME = Settings.getInstance().getClanName();
     private long clanId = 0L;
     private List<Long> loadedEvents = new ArrayList<>();
 
@@ -86,7 +87,7 @@ public class BungieMethods {
             if (array.length() > 0) {
                 int exit = 0;
                 for (int i = 0; i < array.length(); i++) {
-                    //if (exit++ == 2) break;
+                    if (exit++ == 2) break;
 
                     JSONObject playerObject = (JSONObject)array.get(i);
                     Player player = new Player();
@@ -126,8 +127,7 @@ public class BungieMethods {
     }
 
     /**
-     *
-     * @return
+     * Выдача идентификаторов участников клана
      */
     public List<Long> getClanMembersId(){
         int page = 0;
@@ -139,7 +139,6 @@ public class BungieMethods {
             JSONObject obj = basicGet("/GroupV2/" + getClanId() + "/Members/?currentPage=" + page);
             JSONArray array = obj.getJSONArray("results");
             if (array.length() > 0) {
-                int exit = 0;
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject playerObject = (JSONObject)array.get(i);
                     playersId.add(playerObject.getJSONObject("destinyUserInfo").getLong("membershipId"));
@@ -205,9 +204,20 @@ public class BungieMethods {
      * @return массив тип показателя: значение
      */
     public Map<String, Map<String, String>> getCharacterGameIndicators(long playerId, int memberType, long characterId, GameType gameType){
-        // TODO Сделать так что бы входные параметры брались из файла( если даты не указаны, то allTime иначе Daily)
+        String params = "&modes=" + gameType.paramName;
+        if (Settings.getInstance().getStartDate() == null && Settings.getInstance().getEndDate() == null){
+            params += "&periodType=AllTime";
+        }else {
+            params += "&periodType=Daily";
+            if (Settings.getInstance().getStartDate() != null){
+                params += "&daystart=" + DATE_FORMAT.format(Settings.getInstance().getStartDate());
+            }
+            if (Settings.getInstance().getEndDate() != null){
+                params += "&dayend=" + DATE_FORMAT.format(Settings.getInstance().getEndDate());
+            }
+        }
         JSONObject indicators = basicGet("Destiny2/" + memberType + "/Account/" + playerId + "/Character/" + characterId
-                + "/Stats/?&modes=" + gameType.paramName + "&daystart=2017-09-25&dayend=2017-10-01&periodType=Daily").getJSONObject(gameType.keyName);
+                + "/Stats/?&" + params).getJSONObject(gameType.keyName);
         System.out.println(indicators);
         if (indicators.has("allTime")) {
             indicators = indicators.getJSONObject("allTime");
@@ -228,6 +238,12 @@ public class BungieMethods {
         }
     }
 
+    /**
+     * Парсинг показателей игры
+     * @param indicators объект, который необходимо распарсить
+     * @param gameType тип игры
+     * @return Map тип показателя - значение
+     */
     private Map<String, String> getCharacterGameIndicator(JSONObject indicators, GameType gameType){
         Map<String, String> result = new HashMap<>();
         for (String indicator : Settings.getInstance().getGameParams(gameType).keySet()){
@@ -235,13 +251,16 @@ public class BungieMethods {
                 result.put(indicator, indicators.getJSONObject(indicator)
                         .getJSONObject("basic")
                         .getString("displayValue"));
-            }else {
+            } else {
                 result.put(indicator, null);
             }
         }
         return result;
     }
 
+    /**
+     * Кеш кланов по игрокам, что бы по нескольку раз не дёргать сервисы
+     */
     private Map<Long, Clan> playersClan = new HashMap<>();
 
     /**
@@ -267,8 +286,10 @@ public class BungieMethods {
             if (obj == null) {
                 break;
             }
-            if (!obj.has("activities"))
+            if (!obj.has("activities")) {
                 break;
+            }
+
             System.out.println(obj);
             JSONArray events = obj.getJSONArray("activities");
             // Теперь войдём в каждое событие
@@ -281,7 +302,13 @@ public class BungieMethods {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                //event.setEventDate(((JSONObject)events.get(i)).getString());
+
+                if (Settings.getInstance().getStartDate() != null && event.getEventDate().before(Settings.getInstance().getStartDate())){
+                    break;
+                }
+                if (Settings.getInstance().getEndDate() != null && event.getEventDate().after(Settings.getInstance().getEndDate())){
+                    continue;
+                }
 
                 // Если событие уже обрабатывалось, то не будем больше его обрабатывать
                 if (loadedEvents.contains(event.getEventId())){

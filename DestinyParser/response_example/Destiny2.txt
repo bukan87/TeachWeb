@@ -35,3 +35,9 @@ https://www.bungie.net/Platform/Destiny2/Stats/PostGameCarnageReport/502495330/
 GroupV2.GetGroupsForMember
 Определение клана по игроку
 https://www.bungie.net/Platform/GroupV2/User/2/4611686018468825852/all/1/
+
+
+https://www.bungie.net/Platform/GroupV2/Name/Russian Warriors/1/
+
+
+https://www.bungie.net/Platform/GroupV2/2070835/Members/?currentPage=1

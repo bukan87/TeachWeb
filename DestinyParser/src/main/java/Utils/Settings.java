@@ -1,5 +1,8 @@
 package Utils;
 
+import Utils.Excel.BadCellData;
+import Utils.Excel.ExcelUtils;
+import Utils.Excel.ResultType;
 import model.GameType;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -9,10 +12,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,18 +26,55 @@ public class Settings {
     private static Settings ourInstance = new Settings();
     private XSSFWorkbook workbook;
     private Map<GameType, Map<String, String>> sheets = new HashMap<>();
+    private Date startDate;
+    private Date endDate;
+    private ResultType resultType;
+    private String clanName;
 
     public static Settings getInstance() {
         return ourInstance;
     }
 
+    /**
+     * При создании вычитываем параметры
+     */
     private Settings() {
         try {
             FileInputStream fis = new FileInputStream(new File("settings.xlsx"));
             workbook = new XSSFWorkbook(fis);
+            fis.close();
+            XSSFRow params = workbook.getSheet("Params").getRow(1);
+            startDate = getDate(params.getCell(0));
+            endDate = getDate(params.getCell(1));
+            switch (params.getCell(2).getStringCellValue()){
+                case "Игры":
+                    resultType = ResultType.GAMES;
+                    break;
+                case "Статистика":
+                    resultType = ResultType.STATISTIC;
+                    break;
+                default:
+                    throw new BadCellValue("Params", 2);
+            }
+            clanName = params.getCell(3).getStringCellValue();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Вытаскивание даты из входных парметров
+     * @param cell ячейка, в которой должна храниться дата
+     * @return дата в виде строки(может быть null)
+     */
+    private Date getDate(XSSFCell cell){
+        Date result = null;
+        try{
+            result = ExcelUtils.getDateValue(cell);
+        }catch (BadCellData badCellData){
+            throw new BadCellValue("Params", cell.getColumnIndex() + 1);
+        }
+        return result;
     }
 
     /**
@@ -67,5 +107,27 @@ public class Settings {
             return true;
         }
         return false;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public String getClanName() {
+        return clanName;
+    }
+
+    public ResultType getResultType() {
+        return resultType;
+    }
+
+    private class BadCellValue extends RuntimeException{
+        public BadCellValue(String sheetName, int cellNum){
+            super("Указано не корректное значение на странице " + sheetName + " в ячейке " + cellNum);
+        }
     }
 }

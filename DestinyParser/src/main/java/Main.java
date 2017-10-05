@@ -1,14 +1,13 @@
 import Utils.BungieMethods;
 import Utils.Excel.ExcelUtils;
 import Utils.Excel.ResultExcel;
+import Utils.Excel.ResultType;
 import Utils.Settings;
-import com.sun.org.apache.regexp.internal.RE;
 import model.Character;
 import model.Event;
 import model.GameType;
 import model.Player;
 import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -21,17 +20,19 @@ public class Main {
     private static BungieMethods bungieMethods = new BungieMethods();
 
     public static void main(String[] args){
-
-        int exit = 0;
-        //gameIndicators();
-        for (long playerId : bungieMethods.getClanMembersId()){
-            for (long characterId : bungieMethods.getCharactersId(playerId)) {
-                // Просмотрим игры, в которых участвовал персонаж
-                events(playerId, 2, characterId, GameType.TRAILS_OF_NINE);
-                events(playerId, 2, characterId, GameType.RAID);
-                events(playerId, 2, characterId, GameType.NIGHTFALL);
+        if (Settings.getInstance().getResultType() == ResultType.STATISTIC) {
+            gameIndicators();
+        } else {
+            int exit = 0;
+            for (long playerId : bungieMethods.getClanMembersId()) {
+                for (long characterId : bungieMethods.getCharactersId(playerId)) {
+                    // Просмотрим игры, в которых участвовал персонаж
+                    events(playerId, 2, characterId, GameType.TRAILS_OF_NINE);
+                    events(playerId, 2, characterId, GameType.RAID);
+                    events(playerId, 2, characterId, GameType.NIGHTFALL);
+                }
+                if (exit++ == 10) break;
             }
-            //if (exit++ == 10) break;
         }
         ResultExcel.getInstance().write();
     }
@@ -87,10 +88,10 @@ public class Main {
 
     /**
      * Создание строки в отчёте
-     * @param player
-     * @param gameType
-     * @param character
-     * @return
+     * @param player игрок
+     * @param gameType тип игры(страницыв в отчёте)
+     * @param character персонаж
+     * @return созданная строка
      */
     private static XSSFRow createRow(Player player, GameType gameType, Character character){
         XSSFRow row = ResultExcel.getInstance().addRow(gameType);
@@ -119,5 +120,18 @@ public class Main {
                 ExcelUtils.mergeCells(eventRow.getCell(0), -1 * event.getTeammates().size() + 1, 0);
             }
         }
+    }
+
+    /**
+     * Преобразование секунд в строку
+     * @param s секнды
+     * @return время
+     */
+    private static String transformSecondToString(Long s){
+        Long day = s / 86400;
+        Long hours = (s / 3600) - 24 * day;
+        Long minutes = (s % 3600) / 60;
+        Long seconds = s % 60;
+        return day + "day " + hours + "h " + minutes + "m " + seconds+ "sec ";
     }
 }
