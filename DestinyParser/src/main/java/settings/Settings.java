@@ -1,4 +1,4 @@
-package Utils;
+package settings;
 
 import Utils.Excel.BadCellData;
 import Utils.Excel.ExcelUtils;
@@ -12,7 +12,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -25,7 +24,7 @@ import java.util.Map;
 public class Settings {
     private static Settings ourInstance = new Settings();
     private XSSFWorkbook workbook;
-    private Map<GameType, Map<String, String>> sheets = new HashMap<>();
+    private Map<GameType, Map<String, SettingValue>> sheets = new HashMap<>();
     private Date startDate;
     private Date endDate;
     private ResultType resultType;
@@ -80,18 +79,25 @@ public class Settings {
     /**
      * Выдача параметров для конкретной игры
      * @param gameType тип игры
-     * @return Мап имя параметра : отображение в отчёте
+     * @return Мап имя параметра : SettingValue
      */
-    public Map<String, String> getGameParams(GameType gameType){
+    public Map<String, SettingValue> getGameParams(GameType gameType){
         if (sheets.containsKey(gameType)){
             return sheets.get(gameType);
         }
-        Map<String, String> result = new LinkedHashMap<>();
+        Map<String, SettingValue> result = new LinkedHashMap<>();
         XSSFSheet sheet = workbook.getSheet(gameType.settingsSheetName);
         for (int i = 1; i < sheet.getLastRowNum(); i++){
             XSSFRow row = sheet.getRow(i);
+            // Если указано значение отображения на русском, то считаем, что параметр учитывается
             if (!isNull(row.getCell(0)) && !isNull(row.getCell(1))){
-                result.put(row.getCell(0).getStringCellValue(), row.getCell(1).getStringCellValue());
+                SettingValue sv = new SettingValue();
+                sv.setRussianName(row.getCell(1).getStringCellValue());
+                sv.setDatatype(Datatype.valueOf(row.getCell(2).getStringCellValue()));
+                if (sv.getDatatype() != Datatype.STRING) {
+                    sv.setAggregateOperation(AggregateOperation.valueOf(row.getCell(3).getStringCellValue()));
+                }
+                result.put(row.getCell(0).getStringCellValue(), sv);
             }
         }
         sheets.put(gameType, result);

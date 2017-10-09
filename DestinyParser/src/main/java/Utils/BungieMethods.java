@@ -1,5 +1,6 @@
 package Utils;
 
+import settings.Settings;
 import model.Character;
 import model.Clan;
 import model.Event;
@@ -87,7 +88,7 @@ public class BungieMethods {
             if (array.length() > 0) {
                 int exit = 0;
                 for (int i = 0; i < array.length(); i++) {
-                    if (exit++ == 2) break;
+                    //if (exit++ == 2) break;
 
                     JSONObject playerObject = (JSONObject)array.get(i);
                     Player player = new Player();

@@ -1,13 +1,11 @@
 package Utils.Excel;
 
-import Utils.Settings;
+import settings.SettingValue;
+import settings.Settings;
 import model.GameType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -59,12 +57,11 @@ public class ResultExcel extends Excel {
         headerRow.createCell(cellNum++).setCellValue("Имя бойца");
         headerRow.createCell(cellNum++).setCellValue("Персонаж");
         headerRow.createCell(cellNum++).setCellValue("Лайт");
-        headerRow.createCell(cellNum++).setCellValue("День");
 
         // Показатели игры
-        Map<String, String> settings = Settings.getInstance().getGameParams(gameType);
-        for(Map.Entry<String, String> setting : settings.entrySet()){
-            headerRow.createCell(cellNum++).setCellValue(setting.getValue());
+        Map<String, SettingValue> settings = Settings.getInstance().getGameParams(gameType);
+        for(Map.Entry<String, SettingValue> setting : settings.entrySet()){
+            headerRow.createCell(cellNum++).setCellValue(setting.getValue().getRussianName());
         }
     }
 }

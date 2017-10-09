@@ -2,16 +2,21 @@ import Utils.BungieMethods;
 import Utils.Excel.ExcelUtils;
 import Utils.Excel.ResultExcel;
 import Utils.Excel.ResultType;
-import Utils.Settings;
 import model.Character;
 import model.Event;
 import model.GameType;
 import model.Player;
 import org.apache.poi.xssf.usermodel.XSSFRow;
+import settings.SettingValue;
+import settings.Settings;
 
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.DoubleStream;
+import java.util.stream.LongStream;
 
 /**
  * @author by Ilin_ai on 21.09.2017.
@@ -37,17 +42,16 @@ public class Main {
         ResultExcel.getInstance().write();
     }
 
+    private static <T> T cast(Class<T> clazz, Object data){
+        return (T)data;
+    }
+
     private static void gameIndicators(){
         for(Player player : bungieMethods.getClanMembers()){
             // Пробежимся по персонажам игрока
             //int playerMerge = 0;
-            Map<GameType, Integer> mergeDays = new HashMap<>();
             for(int i = 0; i < player.getCharacters().size(); i++){
                 for (GameType gameType : GameType.values()) {
-                    if (!mergeDays.containsKey(gameType)){
-                        mergeDays.put(gameType, 0);
-                    }
-                    int characterMerge = 0;
                     Character character = player.getCharacters().get(i);
                     XSSFRow row = createRow(player, gameType, character);
                     int cellNum = row.getLastCellNum();
@@ -55,35 +59,126 @@ public class Main {
                     // Показатели игры
                     Map<String, Map<String, String>> gameIndicators = character.getGameIndicators().get(gameType);
                     if (gameIndicators != null) {
-                        if (gameIndicators.size() > 1) {
-                            //mergeDays.put(g)
-                            mergeDays.put(gameType, mergeDays.get(gameType) + gameIndicators.size() - 1);
-                        }
-                        // Показатели храняться по дням
-                        Map<String, String> settings = Settings.getInstance().getGameParams(gameType);
+                        // Показатели храняться по дням, нужно просуммировать данные или найти среднее
+                        Map<String, SettingValue> settings = Settings.getInstance().getGameParams(gameType);
+                        Map<String, List<Object>> indicatorsMap = new LinkedHashMap<>();
                         for (Map.Entry<String, Map<String, String>> day : gameIndicators.entrySet()){
-                            characterMerge++;
-                            if (characterMerge > 1) {
-                                row = createRow(player, gameType, character);
-                                cellNum = row.getLastCellNum();
-                            }
-                            row.createCell(cellNum++).setCellValue(day.getKey());
-                            for (Map.Entry<String, String> setting : settings.entrySet()) {
-                                row.createCell(cellNum++).setCellValue(day.getValue().get(setting.getKey()));
+                            for (Map.Entry<String, SettingValue> setting : settings.entrySet()) {
+                                if (!indicatorsMap.containsKey(setting.getKey())){
+                                    indicatorsMap.put(setting.getKey(), new ArrayList<>());
+                                }
+                                if (day.getValue().get(setting.getKey()) != null) {
+                                    List<Object> indicatorValues = indicatorsMap.get(setting.getKey());
+                                    indicatorValues.add(day.getValue().get(setting.getKey()));
+                                }
                             }
                         }
-                        if (characterMerge > 1){
-                            ExcelUtils.mergeCells(row.getCell(1), -1 * (characterMerge - 1), 0);
-                            ExcelUtils.mergeCells(row.getCell(2), -1 * (characterMerge - 1), 0);
+                        // Теперь сагрегируем все данные и запишем в отчёт
+                        for (String data : aggregate(gameType, indicatorsMap)){
+                            row.createCell(cellNum++).setCellValue(data);
                         }
                     }
                     // Если персонажей было несколько, то необходимо объединить ячейку с именем
-                    if ((mergeDays.get(gameType) + player.getCharacters().size()) > 1 && i == player.getCharacters().size() - 1) {
-                        ExcelUtils.mergeCells(row.getCell(0), -1 * (mergeDays.get(gameType) + player.getCharacters().size() - 1), 0);
+                    if ( + player.getCharacters().size() > 1 && i == player.getCharacters().size() - 1) {
+                        ExcelUtils.mergeCells(row.getCell(0), -1 * (player.getCharacters().size() - 1), 0);
                     }
                 }
             }
         }
+    }
+
+    /**
+     * Аггрегация данных
+     * @param gameType тип игры, исходя из этого будет браться конфиг
+     * @param dataMap массив данных
+     * @return Лист аггрегированных данных, переведённых в строку
+     */
+    private static List<String> aggregate(GameType gameType, Map<String, List<Object>> dataMap){
+        List<String> result = new ArrayList<>();
+        for (Map.Entry<String, SettingValue> setting : Settings.getInstance().getGameParams(gameType).entrySet()){
+            if (dataMap.containsKey(setting.getKey()) && dataMap.get(setting.getKey()).size() > 0){
+                try {
+                    List<Object> dataList = dataMap.get(setting.getKey());
+                    switch (setting.getValue().getDatatype()) {
+                        case DOUBLE: {
+                            DoubleStream stream = dataList.stream().mapToDouble(value -> Double.valueOf(value.toString()));
+                            switch (setting.getValue().getAggregateOperation()) {
+                                case AVG:
+                                    result.add(String.valueOf(stream.average().getAsDouble()));
+                                    break;
+                                case MAX:
+                                    result.add(String.valueOf(stream.max().getAsDouble()));
+                                    break;
+                                case MIN:
+                                    result.add(String.valueOf(stream.min().getAsDouble()));
+                                    break;
+                                case SUM:
+                                    result.add(String.valueOf(stream.sum()));
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        }
+                        case LONG: {
+                            LongStream stream = dataList.stream().mapToLong(value -> Long.valueOf(value.toString()));
+                            switch (setting.getValue().getAggregateOperation()) {
+                                case AVG:
+                                    result.add(String.valueOf(new Double(stream.average().getAsDouble()).longValue()));
+                                    break;
+                                case MAX:
+                                    result.add(String.valueOf(stream.max().getAsLong()));
+                                    break;
+                                case MIN:
+                                    result.add(String.valueOf(stream.min().getAsLong()));
+                                    break;
+                                case SUM:
+                                    result.add(String.valueOf(stream.sum()));
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        }
+                        case DURATION: {
+                            // Сначала трансформируем строку времени в количество секунд и сагрегируем
+                            LongStream stream = dataList.stream().mapToLong(value -> parseDateToSeconds(value.toString()));
+                            Long subResult = null;
+                            switch (setting.getValue().getAggregateOperation()) {
+                                case AVG:
+                                    subResult = new Double(stream.average().getAsDouble()).longValue();
+                                    break;
+                                case MAX:
+                                    subResult = stream.max().getAsLong();
+                                    break;
+                                case MIN:
+                                    subResult = stream.min().getAsLong();
+                                    break;
+                                case SUM:
+                                    subResult = stream.sum();
+                                    break;
+                                default:
+                                    break;
+                            }
+                            // Трансформируем обратно в строку
+                            result.add(transformSecondToString(subResult));
+                            break;
+                        }
+                        case STRING: {
+                            result.add(dataList.get(0).toString());
+                            break;
+                        }
+                    }
+                } catch (Exception e){
+                    System.out.println(gameType + " " + setting.getValue().getRussianName() + " " + dataMap.get(setting.getKey()).toString());
+                    throw e;
+                }
+            } else {
+                result.add("");
+            }
+
+        }
+        return result;
     }
 
     /**
@@ -132,6 +227,45 @@ public class Main {
         Long hours = (s / 3600) - 24 * day;
         Long minutes = (s % 3600) / 60;
         Long seconds = s % 60;
-        return day + "day " + hours + "h " + minutes + "m " + seconds+ "sec ";
+        StringBuilder result = new StringBuilder();
+        if (day > 0)
+            result.append(day + "day");
+        if (hours > 0){
+            result.append(" " + hours + "h");
+        }
+        if (minutes > 0){
+            result.append(" " + minutes + "m");
+        }
+        result.append(seconds+ "sec ");
+        return result.toString().trim();
+    }
+
+    /**
+     * Парс количества секунд из строковой даты
+     * @param date строковая дата
+     * @return количество секунд
+     */
+    private static Long parseDateToSeconds(String date){
+        String[] times = date.split(" ");
+        int factor = 1;
+        long result = 0;
+        for (String time : date.split(" ")){
+            switch (time.replaceAll("\\d", "")){
+                case "d":
+                    factor = 86400;
+                    break;
+                case "h":
+                    factor = 3600;
+                    break;
+                case "m":
+                    factor = 60;
+                    break;
+                default:
+                    factor = 1;
+                    break;
+            }
+            result += Integer.parseInt(time.replaceAll("\\D", "")) * factor;
+        }
+        return result;
     }
 }
