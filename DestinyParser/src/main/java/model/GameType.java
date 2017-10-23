@@ -5,7 +5,7 @@ package model;
  */
 public enum GameType {
     PVP("AllPvP", "allPvP", "PvP"),
-    //IRON_BANNER("IronBanner", "ironBanner"), пока не работает
+    IRON_BANNER("IronBanner", "ironBanner", "IronBanner"),
     TRAILS_OF_NINE("TrialsOfTheNine", "trialsofthenine", "TrialsOfTheNine"),
     PVE("AllPvE", "allPvE", "PvE"),
     STRIKE("Strike", "strike", "Strike"),

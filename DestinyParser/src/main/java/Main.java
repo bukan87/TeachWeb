@@ -36,7 +36,7 @@ public class Main {
                     events(playerId, 2, characterId, GameType.RAID);
                     events(playerId, 2, characterId, GameType.NIGHTFALL);
                 }
-                if (exit++ == 10) break;
+                //if (exit++ == 1) break;
             }
         }
         ResultExcel.getInstance().write();

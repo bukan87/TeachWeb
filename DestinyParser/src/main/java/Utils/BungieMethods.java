@@ -304,11 +304,14 @@ public class BungieMethods {
                     e.printStackTrace();
                 }
 
+                // Если указана дата начала и дата в отчёте больше(позже), то идём к следующему событию
                 if (Settings.getInstance().getStartDate() != null && event.getEventDate().before(Settings.getInstance().getStartDate())){
-                    break;
-                }
-                if (Settings.getInstance().getEndDate() != null && event.getEventDate().after(Settings.getInstance().getEndDate())){
                     continue;
+                }
+
+                // Если указана дата окончания и дата в отчёте меньше(раньше), то считаем, что дальше данные нам не нужны и выходим из цикла
+                if (Settings.getInstance().getEndDate() != null && event.getEventDate().after(Settings.getInstance().getEndDate())){
+                    break;
                 }
 
                 // Если событие уже обрабатывалось, то не будем больше его обрабатывать
