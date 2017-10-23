@@ -1,6 +1,5 @@
 package Utils;
 
-import settings.Settings;
 import model.Character;
 import model.Clan;
 import model.Event;
@@ -8,6 +7,7 @@ import model.GameType;
 import model.Player;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import settings.Settings;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,6 +16,11 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 /**
  * @author by Ilin_ai on 21.09.2017.
@@ -293,6 +298,8 @@ public class BungieMethods {
 
             System.out.println(obj);
             JSONArray events = obj.getJSONArray("activities");
+            List<Callable<Event>> callableList = new ArrayList<>();
+            ExecutorService executor = Executors.newWorkStealingPool();
             // Теперь войдём в каждое событие
             for (int i = 0; i < events.length(); i++){
                 Event event = new Event();
@@ -319,59 +326,75 @@ public class BungieMethods {
                     continue;
                 }
                 loadedEvents.add(event.getEventId());
-
-                // Достанем идентфикаторы участников и приндалежность к командам
-                JSONArray eventMembersSrc = basicGet("/Destiny2/Stats/PostGameCarnageReport/" + event.getEventId() + "/").getJSONArray("entries");
-                List<EventMember> eventMembers = new ArrayList<>();
-                String playerTeam = null;
-                for (Object eventMember : eventMembersSrc) {
-                    EventMember ev = new EventMember();
-                    ev.playerId = ((JSONObject)eventMember)
-                            .getJSONObject("player")
-                            .getJSONObject("destinyUserInfo")
-                            .getLong("membershipId");
-                    ev.playerName = ((JSONObject)eventMember)
-                            .getJSONObject("player")
-                            .getJSONObject("destinyUserInfo")
-                            .getString("displayName");
-                    if (((JSONObject)eventMember).getJSONObject("values").has("team")) {
-                        ev.teamName = ((JSONObject) eventMember)
-                                .getJSONObject("values")
-                                .getJSONObject("team")
-                                .getJSONObject("basic")
-                                .getString("displayValue");
+                Callable<Event> cal = () -> {
+                    // Достанем идентфикаторы участников и приндалежность к командам
+                    JSONArray eventMembersSrc = basicGet("/Destiny2/Stats/PostGameCarnageReport/" + event.getEventId() + "/").getJSONArray("entries");
+                    List<EventMember> eventMembers = new ArrayList<>();
+                    String playerTeam = null;
+                    for (Object eventMember : eventMembersSrc) {
+                        EventMember ev = new EventMember();
+                        ev.playerId = ((JSONObject)eventMember)
+                                .getJSONObject("player")
+                                .getJSONObject("destinyUserInfo")
+                                .getLong("membershipId");
+                        ev.playerName = ((JSONObject)eventMember)
+                                .getJSONObject("player")
+                                .getJSONObject("destinyUserInfo")
+                                .getString("displayName");
+                        if (((JSONObject)eventMember).getJSONObject("values").has("team")) {
+                            ev.teamName = ((JSONObject) eventMember)
+                                    .getJSONObject("values")
+                                    .getJSONObject("team")
+                                    .getJSONObject("basic")
+                                    .getString("displayValue");
+                        }
+                        ev.memberType = ((JSONObject)eventMember)
+                                .getJSONObject("player")
+                                .getJSONObject("destinyUserInfo")
+                                .getInt("membershipType");
+                        eventMembers.add(ev);
+                        // Запишем название команды, в которой учавствовал игрок, по которому ищем команды
+                        if (ev.playerId == playerId){
+                            playerTeam = ev.teamName;
+                        }
                     }
-                    ev.memberType = ((JSONObject)eventMember)
-                            .getJSONObject("player")
-                            .getJSONObject("destinyUserInfo")
-                            .getInt("membershipType");
-                    eventMembers.add(ev);
-                    // Запишем название команды, в которой учавствовал игрок, по которому ищем команды
-                    if (ev.playerId == playerId){
-                        playerTeam = ev.teamName;
+                    // Разделим участников на команды
+                    for (EventMember member : eventMembers) {
+                        Clan playerClan;
+                        if (playersClan.containsKey(member.playerId)){
+                            playerClan = playersClan.get(member.playerId);
+                        }else {
+                            playerClan = getClanByMember(member.playerId, member.memberType);
+                            playersClan.put(member.playerId, playerClan);
+                        }
+                        Player player = new Player();
+                        player.setId(member.playerId);
+                        player.setMembershipType(member.memberType);
+                        player.setName(member.playerName);
+                        player.setClan(playerClan);
+                        if (playerTeam == null || playerTeam.equals(member.teamName)){
+                            event.getTeammates().add(player);
+                        }else{
+                            event.getEnemies().add(player);
+                        }
                     }
-                }
-                // Разделим участников на команды
-                for (EventMember member : eventMembers) {
-                    Clan playerClan;
-                    if (playersClan.containsKey(member.playerId)){
-                        playerClan = playersClan.get(member.playerId);
-                    }else {
-                        playerClan = getClanByMember(member.playerId, member.memberType);
-                        playersClan.put(member.playerId, playerClan);
-                    }
-                    Player player = new Player();
-                    player.setId(member.playerId);
-                    player.setMembershipType(member.memberType);
-                    player.setName(member.playerName);
-                    player.setClan(playerClan);
-                    if (playerTeam == null || playerTeam.equals(member.teamName)){
-                        event.getTeammates().add(player);
-                    }else{
-                        event.getEnemies().add(player);
-                    }
-                }
-                result.add(event);
+                    return event;
+                };
+                callableList.add(cal);
+            }
+            try {
+                result = executor.invokeAll(callableList)
+                        .stream()
+                        .map(future -> {
+                            try {
+                                return future .get();
+                            } catch (InterruptedException | ExecutionException e) {
+                                throw new IllegalStateException(e);
+                            }
+                        })
+                        .collect(Collectors.toList());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
         return result;
